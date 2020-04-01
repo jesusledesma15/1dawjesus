@@ -6,6 +6,7 @@
 package bingo;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  *
@@ -23,5 +24,16 @@ public class Bombo {
         for (int i = 1; i <= 90; i++) {
             numeros.add(i);
         }
+    }
+    
+    public int expulsarBola(){
+        Random rdn = new Random();
+        int numero = 0;
+        if (!numeros.isEmpty()) {
+            numero = numeros.get(rdn.nextInt(numeros.size())+1);
+            return numero;
+        }
+        numeros.remove(numero);
+        return 0;
     }
 }
