@@ -12,12 +12,16 @@ import java.util.ArrayList;
  * @author Jesus
  */
 public class Bombo {
-    
+
     private ArrayList<Integer> numeros;
 
     public Bombo() {
         this.numeros = new ArrayList<>();
     }
-    
-        
+
+    public void rellenarBombo() {
+        for (int i = 1; i <= 90; i++) {
+            numeros.add(i);
+        }
+    }
 }
