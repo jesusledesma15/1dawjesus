@@ -16,7 +16,7 @@ public class Prueba {
         Bombo bombo = new Bombo();
         bombo.rellenarBombo();
         bombo.mostrarBombo();
-        System.out.println(bombo.expulsarBola());
+        System.out.println("Sale: " + bombo.expulsarBola());
         bombo.mostrarBombo();
         
     }
