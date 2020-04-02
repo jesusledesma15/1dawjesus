@@ -43,4 +43,13 @@ public class Bombo {
             System.out.print("(" + bola + ") ");
         });
     }
+
+    public ArrayList<Integer> getNumeros() {
+        return numeros;
+    }
+
+    public void setNumeros(ArrayList<Integer> numeros) {
+        this.numeros = numeros;
+    }    
+    
 }
