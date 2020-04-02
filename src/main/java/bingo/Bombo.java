@@ -25,21 +25,22 @@ public class Bombo {
             numeros.add(i);
         }
     }
-    
-    public int expulsarBola(){
+
+    public int expulsarBola() {
         Random rdn = new Random();
-        int numero = 0;
+        int numero;
         if (!numeros.isEmpty()) {
-            numero = numeros.get(rdn.nextInt(numeros.size())+1);
+            System.out.println("Números dentro: " + numeros.size());
+            numero = numeros.get(rdn.nextInt(numeros.size()) + 1);
+            numeros.remove(numero - 1);
             return numero;
         }
-        numeros.remove(numero);
         return 0;
     }
-    
-    public void mostrarBombo(){
+
+    public void mostrarBombo() {
         numeros.forEach((bola) -> {
-            System.out.println("("+bola + ") ");
+            System.out.print("(" + bola + ") ");
         });
     }
 }
