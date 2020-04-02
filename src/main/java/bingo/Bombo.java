@@ -36,4 +36,10 @@ public class Bombo {
         numeros.remove(numero);
         return 0;
     }
+    
+    public void mostrarBombo(){
+        numeros.forEach((bola) -> {
+            System.out.println("("+bola + ") ");
+        });
+    }
 }
