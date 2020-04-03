@@ -10,14 +10,16 @@ package bingo;
  * @author Jesus
  */
 public class Prueba {
-    
+
     public static void main(String[] args) {
-        
+        int i = 0;
         Bombo bombo = new Bombo();
         bombo.rellenarBombo();
+        System.out.println("--------------------------------------------------");
         bombo.mostrarBombo();
-        System.out.println("Sale: " + bombo.expulsarBola());
-        bombo.mostrarBombo();
-        
+        for (int j = 0; j < 91; j++) {
+            System.out.println("Tirada nº" + j + " " + bombo.expulsarBola());
+        }
+
     }
 }
