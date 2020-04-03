@@ -14,42 +14,49 @@ import java.util.Random;
  */
 public class Bombo {
 
-    private ArrayList<Integer> numeros;
+    //Lista de números (bolas) atributo del bombo
+    private ArrayList<Integer> bombo;
 
+    //Inicializamos el arrayList en el constructor
     public Bombo() {
-        this.numeros = new ArrayList<>();
+        this.bombo = new ArrayList<>();
     }
 
+    //Añade números desde 1-90 inclusives al bombo
     public void rellenarBombo() {
         for (int i = 1; i <= 90; i++) {
-            numeros.add(i);
+            bombo.add(i);
         }
     }
 
+    //Si la lista no está vacía, saca una posición aleatoria, borra esa posición y devuelve el número (bola) que habia en esa posición, si esta vacía devuelve -1
     public int expulsarBola() {
         Random rdn = new Random();
         int numero;
-        if (!numeros.isEmpty()) {
-            System.out.println("Números dentro: " + numeros.size());
-            numero = numeros.get(rdn.nextInt(numeros.size()) + 1);
-            numeros.remove(numero - 1);
-            return numero;
+        if (!bombo.isEmpty()) {
+            int posicion = rdn.nextInt(bombo.size()); //Posicion aleatoria del arraylist
+            numero = bombo.get(posicion); //Lo guardamos antes de borrarlo para poder devolverlo sin que sea alterado.
+            bombo.remove(posicion); //Borra la posicion aleatoria obtenida
+            return numero;//Devolvemos el número que se ha obtenido en esa posición
         }
-        return 0;
+        return -1;
     }
 
+    //Imprime las bolas que hay dentro del bombo
     public void mostrarBombo() {
-        numeros.forEach((bola) -> {
+        bombo.forEach((bola) -> {
             System.out.print("(" + bola + ") ");
         });
+        System.out.println("");
     }
 
+    //Getter y Setter
     public ArrayList<Integer> getNumeros() {
-        return numeros;
+        return bombo;
     }
 
     public void setNumeros(ArrayList<Integer> numeros) {
-        this.numeros = numeros;
-    }    
-    
+        this.bombo = numeros;
+    }
+
 }
