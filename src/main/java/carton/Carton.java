@@ -5,6 +5,8 @@
  */
 package carton;
 
+import java.util.Random;
+
 /**
  *
  * @author Jesus
@@ -23,7 +25,12 @@ public class Carton {
 
     public void setCarton(String[][] carton) {
         this.carton = carton;
-    }   
+    }
+    
+    private String getNumEntre(int desde, int hasta){
+        Random rdn = new Random();
+        return String.valueOf( rdn.nextInt(hasta-desde+1)+desde);
+    }
     
     
 }
