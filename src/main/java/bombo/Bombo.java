@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package bingo;
+package bombo;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -28,13 +28,17 @@ public class Bombo {
             bombo.add(i);
         }
     }
+    
+    public int getBolasBombo(){
+        return bombo.size();
+    }
 
     //Si la lista no está vacía, saca una posición aleatoria, borra esa posición y devuelve el número (bola) que habia en esa posición, si esta vacía devuelve -1
     public int expulsarBola() {
         Random rdn = new Random();
         int numero;
         if (!bombo.isEmpty()) {
-            int posicion = rdn.nextInt(bombo.size()); //Posicion aleatoria del arraylist
+            int posicion = rdn.nextInt(getBolasBombo()); //Posicion aleatoria del arraylist
             numero = bombo.get(posicion); //Lo guardamos antes de borrarlo para poder devolverlo sin que sea alterado.
             bombo.remove(posicion); //Borra la posicion aleatoria obtenida
             return numero;//Devolvemos el número que se ha obtenido en esa posición
