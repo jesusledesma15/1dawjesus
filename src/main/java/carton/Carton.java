@@ -13,5 +13,17 @@ public class Carton {
     
     private String [][] carton;
     
+    public Carton(){
+        carton = new String [9][3];
+    }
+
+    public String[][] getCarton() {
+        return carton;
+    }
+
+    public void setCarton(String[][] carton) {
+        this.carton = carton;
+    }   
+    
     
 }
