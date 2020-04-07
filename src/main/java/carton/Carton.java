@@ -40,4 +40,16 @@ public class Carton {
         return String.valueOf(rdn.nextInt(hasta - desde + 1) + desde);
     }
 
+    public void imprimirCarton() {
+        for (int i = 0; i < carton.length; i++) {
+            for (int j = 0; j < carton[0].length; j++) {
+                System.out.print(carton[i][j] + "\t");
+                if (j == 2 && (i == 2 || i == 5)) {
+                    System.out.println("");
+                }
+            }
+
+        }
+    }
+
 }
