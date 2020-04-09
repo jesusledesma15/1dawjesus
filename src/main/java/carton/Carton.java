@@ -32,13 +32,14 @@ public class Carton {
         int desde = 1;
         for (int i = 0; i < carton.length; i++) {
             String n1 = getNumEntre(desde, hasta);
+            System.out.println("Columna " + i);
             System.out.println("F1: " + n1);
             String n2 = getNumEntre(desde, hasta);
             System.out.println("F2: " + n2);
             String n3 = getNumEntre(desde, hasta);
             System.out.println("F3: " + n3 + "\n");
             for (int j = 0; j < carton[0].length; j++) {
-                //Control para el primer numero de la columna x del carton
+                //Control para el primer numero de cada columna
                 if (Integer.parseInt(n1) <= hasta - 3) {
                     carton[i][2] = n1;
                 } else {
@@ -47,7 +48,16 @@ public class Carton {
                     } while (Integer.parseInt(n1) > hasta - 3);
 
                 }
-                
+                //Control para el segundo numero de cada columna
+                //El número siempre va a ser mas chico por dos números que el numero hasta de esa columna, además debe de ser mayor que el número de arriba
+                if (Integer.parseInt(n2) <= hasta - 2 && Integer.parseInt(n2) > Integer.parseInt(n1)) {
+                    carton[i][1] = n2;
+                } else {
+                    do {
+                        n2 = getNumEntre(desde, hasta);
+                    } while (Integer.parseInt(n2) > hasta - 2 || Integer.parseInt(n2) <= Integer.parseInt(n1));
+                }
+
             }
             desde += 10;
             hasta += 10;
