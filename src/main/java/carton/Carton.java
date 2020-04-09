@@ -58,6 +58,14 @@ public class Carton {
                     } while (Integer.parseInt(n2) > hasta - 2 || Integer.parseInt(n2) <= Integer.parseInt(n1));
                 }
 
+                //Control para el tercer numero de cada columna
+                if (Integer.parseInt(n3) > Integer.parseInt(n2)) {
+                    carton[i][0] = n3;
+                } else {
+                    do {
+                        n3 = getNumEntre(desde, hasta);
+                    } while (Integer.parseInt(n3) <= Integer.parseInt(n2));
+                }
             }
             desde += 10;
             hasta += 10;
