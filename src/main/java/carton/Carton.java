@@ -30,6 +30,20 @@ public class Carton {
         this.carton = carton;
     }
 
+    //Permite poner el espacio en indices diferentes, habrá 4 espacios por fila, devuelve true si todos los números son diferentes
+    //Creado para el metodo generarEspacios()
+    private boolean areNumDiferent(int uno, int dos, int tres, int cuatro) {
+        boolean distintos = false;
+        if (uno != dos && uno != tres && uno != cuatro) {
+            if (dos != tres && dos != 4) {
+                if (tres != 4) {
+                    distintos = true;
+                }
+            }
+        }
+        return distintos;
+    }
+
 
     //Este método permite crear el carton con todos los requisitos
     public void generarCarton() {
