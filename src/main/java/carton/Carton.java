@@ -42,8 +42,39 @@ public class Carton {
             }
         }
         return distintos;
-    }
+    }            
 
+    private void generarEspacios() {
+        Random rdn = new Random();
+        int espacio1, espacio2, espacio3, espacio4;
+        int cont = 0;
+        for (int j = carton[0].length - 1; j >= 0; j--) {
+            //Podemos tener por filas un máximo de cuatro espacios
+            do {
+                //Creamos 4 indices aleatorios donde poner los espacios
+                espacio1 = rdn.nextInt(9);
+                espacio2 = rdn.nextInt(9);
+                espacio3 = rdn.nextInt(9);
+                espacio4 = rdn.nextInt(9);
+            } while (!areNumDiferent(espacio1, espacio2, espacio3, espacio4));
+            for (int i = 0; i < carton.length; i++) {
+                if (j == 2 || j == 1) { // Añadimos los espacios a la primera columna, no importa el indice en el que caigan los espacios
+                    carton[espacio1][j] = "";
+                    carton[espacio2][j] = "";
+                    carton[espacio3][j] = "";
+                    carton[espacio4][j] = "";
+                }
+                
+                if (j == 0 && !(carton[i][1].equals("") && carton[i][2].equals(""))) {
+                    carton[espacio1][j] = "";
+                    carton[espacio2][j] = "";
+                    carton[espacio3][j] = "";
+                    carton[espacio4][j] = "";
+                }
+
+            }
+        }
+    }
 
     //Este método permite crear el carton con todos los requisitos
     public void generarCarton() {
@@ -54,7 +85,7 @@ public class Carton {
             if (i == 1) {
                 desde--;
             }
-            //Este if permite que la ultima columna pueda tener el 90 también.
+            //Este if permite que la ultima columna pueda tener el 90 también
             if (i == 8) {
                 hasta++;
             }
@@ -99,7 +130,7 @@ public class Carton {
             desde += 10;
             hasta += 10;
         }
-
+        generarEspacios();
     }
 
     //Devuelve un String con un numero aleatorio entre desde y hasta 
