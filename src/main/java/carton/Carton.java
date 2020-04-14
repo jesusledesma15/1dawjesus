@@ -42,7 +42,24 @@ public class Carton {
             }
         }
         return distintos;
-    }            
+    }
+    
+    //Recibe un número si este está en el cartón, se tacha añadiendo guiones antes y después del número
+    public boolean tacharCasilla(String numero) {
+        boolean tachado = false;
+        for (int i = 0; i < carton.length; i++) {
+            for (int j = 0; j < carton[0].length; j++) {
+                if (numero.equals(carton[i][j])) {
+                    tachado = true;
+
+                    carton[i][j] = numero + " X";
+
+                }
+            }
+        }
+        return tachado;
+    }
+            
 
     private void generarEspacios() {
         Random rdn = new Random();
