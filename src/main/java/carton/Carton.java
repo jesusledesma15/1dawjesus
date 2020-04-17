@@ -89,6 +89,10 @@ public class Carton {
         return cont == 5;
     }
 
+    public boolean isBingo(){
+        return isFirstLine()&&isSecondLine()&&isThirdLine();
+
+    }
     private void generarEspacios() {
         Random rdn = new Random();
         int espacio1, espacio2, espacio3, espacio4;
