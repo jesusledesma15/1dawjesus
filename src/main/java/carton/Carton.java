@@ -79,6 +79,16 @@ public class Carton {
         return cont == 5;
     }
 
+    private boolean isThirdLine() {
+        int cont = 0;
+        for (String[] carton1 : carton) {
+            if (carton1[0].contains("X")) {
+                cont++;
+            }
+        }
+        return cont == 5;
+    }
+
     private void generarEspacios() {
         Random rdn = new Random();
         int espacio1, espacio2, espacio3, espacio4;
