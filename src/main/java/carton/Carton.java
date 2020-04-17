@@ -45,7 +45,7 @@ public class Carton {
     }
 
     //Recibe un número si este está en el cartón, se tacha añadiendo una X después del número
-    public boolean tacharCasilla(String numero) {
+    public int tacharCasilla(String numero) {
         boolean tachado = false;
         for (int i = 0; i < carton.length; i++) {
             for (int j = 0; j < carton[0].length; j++) {
@@ -56,9 +56,19 @@ public class Carton {
                 }
             }
         }
-        return tachado;
+        return Integer.parseInt(numero);
     }
 
+    public boolean isFirstLine(){
+        int cont=0;
+        for (int i = 0; i < carton.length; i++) {
+            if (carton[i][2].contains("X")) {
+                cont++;
+            }
+        }
+        return cont == 5;
+    }
+    
     private void generarEspacios() {
         Random rdn = new Random();
         int espacio1, espacio2, espacio3, espacio4;
@@ -71,7 +81,7 @@ public class Carton {
                 espacio2 = rdn.nextInt(9);
                 espacio3 = rdn.nextInt(9);
                 espacio4 = rdn.nextInt(9);
-            } while (!areNumDiferent(espacio1, espacio2, espacio3, espacio4));
+            } while (!areNumDiferent(espacio1, espacio2, espacio3, espacio4)); //Utilizamos el metodo areNumDiferent para controlar que los cuatro indices sean diferentes
             System.out.println("espacio1: " + espacio1);
             System.out.println("espacio2: " + espacio2);
             System.out.println("espacio3: " + espacio3);
@@ -83,11 +93,20 @@ public class Carton {
                     carton[espacio3][j] = "";
                     carton[espacio4][j] = "";
                 }
+                if (j == 0) {
+                    if (!(carton[i][1].equals("") || carton[i][2].equals(""))) {
+                        carton[i][j] = "";
+                        cont++;
+                    }
+                    if (cont < 4) {
+                        for (int k = 0; k < carton[0].length; k++) {
+                           
+                        }
+                        System.out.println("");
+                    }
 
-                if (j == 0 && !(carton[i][1].equals("") || carton[i][2].equals(""))) {
-                    carton[i][j] = "";
                 }
-
+                System.out.println("Cont: " + cont);
             }
         }
     }
