@@ -30,36 +30,34 @@ public class Carton {
         this.carton = carton;
     }
 
-    //Permite poner el espacio en indices diferentes, habrá 4 espacios por fila, devuelve true si todos los números son diferentes
     //Creado para el metodo generarEspacios()
+    //Permite poner el espacio en indices diferentes, habrá 4 espacios por fila, devuelve true si todos los números son diferentes
     private boolean areNumDiferent(int uno, int dos, int tres, int cuatro) {
         boolean distintos = false;
         if (uno != dos && uno != tres && uno != cuatro) {
-            if (dos != tres && dos != 4) {
-                if (tres != 4) {
+            if (dos != tres && dos != cuatro) {
+                if (tres != cuatro) {
                     distintos = true;
                 }
             }
         }
         return distintos;
     }
-    
-    //Recibe un número si este está en el cartón, se tacha añadiendo guiones antes y después del número
+
+    //Recibe un número si este está en el cartón, se tacha añadiendo una X después del número
     public boolean tacharCasilla(String numero) {
         boolean tachado = false;
         for (int i = 0; i < carton.length; i++) {
             for (int j = 0; j < carton[0].length; j++) {
                 if (numero.equals(carton[i][j])) {
                     tachado = true;
-
-                    carton[i][j] = numero + " X";
+                    carton[i][j] = numero + "X";
 
                 }
             }
         }
         return tachado;
     }
-            
 
     private void generarEspacios() {
         Random rdn = new Random();
@@ -74,19 +72,20 @@ public class Carton {
                 espacio3 = rdn.nextInt(9);
                 espacio4 = rdn.nextInt(9);
             } while (!areNumDiferent(espacio1, espacio2, espacio3, espacio4));
+            System.out.println("espacio1: " + espacio1);
+            System.out.println("espacio2: " + espacio2);
+            System.out.println("espacio3: " + espacio3);
+            System.out.println("espacio4: " + espacio4);
             for (int i = 0; i < carton.length; i++) {
-                if (j == 2 || j == 1) { // Añadimos los espacios a la primera columna, no importa el indice en el que caigan los espacios
+                if (j == 2 || j == 1) { // Añadimos los espacios a la primera y segunda columna, no importa el indice en el que caigan los espacios
                     carton[espacio1][j] = "";
                     carton[espacio2][j] = "";
                     carton[espacio3][j] = "";
                     carton[espacio4][j] = "";
                 }
-                
-                if (j == 0 && !(carton[i][1].equals("") && carton[i][2].equals(""))) {
-                    carton[espacio1][j] = "";
-                    carton[espacio2][j] = "";
-                    carton[espacio3][j] = "";
-                    carton[espacio4][j] = "";
+
+                if (j == 0 && !(carton[i][1].equals("") || carton[i][2].equals(""))) {
+                    carton[i][j] = "";
                 }
 
             }
