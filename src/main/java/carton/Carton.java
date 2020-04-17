@@ -59,16 +59,26 @@ public class Carton {
         return Integer.parseInt(numero);
     }
 
-    public boolean isFirstLine(){
-        int cont=0;
-        for (int i = 0; i < carton.length; i++) {
-            if (carton[i][2].contains("X")) {
+    public boolean isFirstLine() {
+        int cont = 0;
+        for (String[] carton1 : carton) {
+            if (carton1[2].contains("X")) {
                 cont++;
             }
         }
         return cont == 5;
     }
-    
+
+    public boolean isSecondLine() {
+        int cont = 0;
+        for (String[] carton1 : carton) {
+            if (carton1[1].contains("X")) {
+                cont++;
+            }
+        }
+        return cont == 5;
+    }
+
     private void generarEspacios() {
         Random rdn = new Random();
         int espacio1, espacio2, espacio3, espacio4;
@@ -100,7 +110,7 @@ public class Carton {
                     }
                     if (cont < 4) {
                         for (int k = 0; k < carton[0].length; k++) {
-                           
+
                         }
                         System.out.println("");
                     }
