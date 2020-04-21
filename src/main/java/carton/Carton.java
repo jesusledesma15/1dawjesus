@@ -45,18 +45,18 @@ public class Carton {
     }
 
     //Recibe un número si este está en el cartón, se tacha añadiendo una X después del número
-    public int tacharCasilla(String numero) {
-        boolean tachado = false;
+    public boolean tacharCasilla(String numero) {
+
         for (int i = 0; i < carton.length; i++) {
             for (int j = 0; j < carton[0].length; j++) {
                 if (numero.equals(carton[i][j])) {
-                    tachado = true;
                     carton[i][j] = numero + "X";
+                    return true;
 
                 }
             }
         }
-        return Integer.parseInt(numero);
+        return false;
     }
 
     public boolean isFirstLine() {
@@ -89,53 +89,58 @@ public class Carton {
         return cont == 5;
     }
 
-    public boolean isBingo(){
-        return isFirstLine()&&isSecondLine()&&isThirdLine();
+    public boolean isBingo() {
+        return isFirstLine() && isSecondLine() && isThirdLine();
 
     }
-    private void generarEspacios() {
-        Random rdn = new Random();
-        int espacio1, espacio2, espacio3, espacio4;
-        int cont = 0;
-        for (int j = carton[0].length - 1; j >= 0; j--) {
-            //Podemos tener por filas un máximo de cuatro espacios
-            do {
-                //Creamos 4 indices aleatorios donde poner los espacios
-                espacio1 = rdn.nextInt(9);
-                espacio2 = rdn.nextInt(9);
-                espacio3 = rdn.nextInt(9);
-                espacio4 = rdn.nextInt(9);
-            } while (!areNumDiferent(espacio1, espacio2, espacio3, espacio4)); //Utilizamos el metodo areNumDiferent para controlar que los cuatro indices sean diferentes
-            System.out.println("espacio1: " + espacio1);
-            System.out.println("espacio2: " + espacio2);
-            System.out.println("espacio3: " + espacio3);
-            System.out.println("espacio4: " + espacio4);
-            for (int i = 0; i < carton.length; i++) {
-                if (j == 2 || j == 1) { // Añadimos los espacios a la primera y segunda columna, no importa el indice en el que caigan los espacios
-                    carton[espacio1][j] = "";
-                    carton[espacio2][j] = "";
-                    carton[espacio3][j] = "";
-                    carton[espacio4][j] = "";
-                }
-                if (j == 0) {
-                    if (!(carton[i][1].equals("") || carton[i][2].equals(""))) {
-                        carton[i][j] = "";
-                        cont++;
-                    }
-                    if (cont < 4) {
-                        for (int k = 0; k < carton[0].length; k++) {
 
-                        }
-                        System.out.println("");
-                    }
-
-                }
-                System.out.println("Cont: " + cont);
-            }
-        }
-    }
-
-    //Este método permite crear el carton con todos los requisitos
+//    private void generarEspacios() {
+//        Random rdn = new Random();
+//        int espacio1, espacio2, espacio3, espacio4;
+//        int cont = 0;
+//        for (int j = carton[0].length - 1; j >= 0; j--) {
+//            //Podemos tener por filas un máximo de cuatro espacios
+//            do {
+//                //Creamos 4 indices aleatorios donde poner los espacios
+//                espacio1 = rdn.nextInt(9);
+//                espacio2 = rdn.nextInt(9);
+//                espacio3 = rdn.nextInt(9);
+//                espacio4 = rdn.nextInt(9);
+//            } while (!areNumDiferent(espacio1, espacio2, espacio3, espacio4)); //Utilizamos el metodo areNumDiferent para controlar que los cuatro indices sean diferentes
+//            System.out.println("espacio1: " + espacio1);
+//            System.out.println("espacio2: " + espacio2);
+//            System.out.println("espacio3: " + espacio3);
+//            System.out.println("espacio4: " + espacio4);
+//            for (int i = 0; i < carton.length; i++) {
+//                if (j == 2 || j == 1) { // Añadimos los espacios a la primera y segunda columna, no importa el indice en el que caigan los espacios
+//                    carton[espacio1][j] = "";
+//                    carton[espacio2][j] = "";
+//                    carton[espacio3][j] = "";
+//                    carton[espacio4][j] = "";
+//                }
+//                if (j == 0) {
+//                    if (!(carton[i][1].equals("") || carton[i][2].equals(""))) {
+//                        carton[i][j] = "";
+//                        cont++;
+//                    }
+//                    if (cont < 4) {
+//                        if ((!carton[i][1].equals("") || carton[i][2].equals("")) || (carton[i][1].equals("") || !carton[i][2].equals(""))) {
+//
+//                        }
+//                        if (!carton[i][j].equals("") && j == 0) {
+//                            carton[i][j] = "";
+//                            cont++;
+//
+//                        }
+//                    }
+//
+//                }
+//                System.out.println("Cont: " + cont);
+//            }
+//
+//        }
+//    }
+//Este método permite crear el carton con todos los requisitos
     public void generarCarton() {
         int hasta = 9;
         int desde = 1;
@@ -189,7 +194,7 @@ public class Carton {
             desde += 10;
             hasta += 10;
         }
-        generarEspacios();
+//        generarEspacios();
     }
 
     //Devuelve un String con un numero aleatorio entre desde y hasta 
