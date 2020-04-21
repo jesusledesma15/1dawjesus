@@ -59,6 +59,7 @@ public class Carton {
         return false;
     }
 
+    //Devuelve true si la primera linea contiene 5 X
     public boolean isFirstLine() {
         int cont = 0;
         for (String[] carton1 : carton) {
@@ -69,6 +70,7 @@ public class Carton {
         return cont == 5;
     }
 
+    //Devuelve true si la segunda linea contiene 5 X
     public boolean isSecondLine() {
         int cont = 0;
         for (String[] carton1 : carton) {
@@ -79,7 +81,8 @@ public class Carton {
         return cont == 5;
     }
 
-    private boolean isThirdLine() {
+    //Devuelve true si la tercera linea contiene 5 X
+    public boolean isThirdLine() {
         int cont = 0;
         for (String[] carton1 : carton) {
             if (carton1[0].contains("X")) {
@@ -89,6 +92,7 @@ public class Carton {
         return cont == 5;
     }
 
+    //Devuelve true si todas las lineas se han tachado
     public boolean isBingo() {
         return isFirstLine() && isSecondLine() && isThirdLine();
 
