@@ -22,6 +22,7 @@ public class Carton {
         carton = new String[9][3];
     }
 
+    //Getters y setters
     public String[][] getCarton() {
         return carton;
     }
@@ -46,7 +47,6 @@ public class Carton {
 
     //Recibe un número si este está en el cartón, se tacha añadiendo una X después del número
     public boolean tacharCasilla(String numero) {
-
         for (int i = 0; i < carton.length; i++) {
             for (int j = 0; j < carton[0].length; j++) {
                 if (numero.equals(carton[i][j])) {
@@ -98,53 +98,62 @@ public class Carton {
 
     }
 
-//    private void generarEspacios() {
-//        Random rdn = new Random();
-//        int espacio1, espacio2, espacio3, espacio4;
-//        int cont = 0;
-//        for (int j = carton[0].length - 1; j >= 0; j--) {
-//            //Podemos tener por filas un máximo de cuatro espacios
-//            do {
-//                //Creamos 4 indices aleatorios donde poner los espacios
-//                espacio1 = rdn.nextInt(9);
-//                espacio2 = rdn.nextInt(9);
-//                espacio3 = rdn.nextInt(9);
-//                espacio4 = rdn.nextInt(9);
-//            } while (!areNumDiferent(espacio1, espacio2, espacio3, espacio4)); //Utilizamos el metodo areNumDiferent para controlar que los cuatro indices sean diferentes
-//            System.out.println("espacio1: " + espacio1);
-//            System.out.println("espacio2: " + espacio2);
-//            System.out.println("espacio3: " + espacio3);
-//            System.out.println("espacio4: " + espacio4);
-//            for (int i = 0; i < carton.length; i++) {
-//                if (j == 2 || j == 1) { // Añadimos los espacios a la primera y segunda columna, no importa el indice en el que caigan los espacios
-//                    carton[espacio1][j] = "";
-//                    carton[espacio2][j] = "";
-//                    carton[espacio3][j] = "";
-//                    carton[espacio4][j] = "";
-//                }
-//                if (j == 0) {
-//                    if (!(carton[i][1].equals("") || carton[i][2].equals(""))) {
-//                        carton[i][j] = "";
-//                        cont++;
-//                    }
-//                    if (cont < 4) {
-//                        if ((!carton[i][1].equals("") || carton[i][2].equals("")) || (carton[i][1].equals("") || !carton[i][2].equals(""))) {
-//
-//                        }
-//                        if (!carton[i][j].equals("") && j == 0) {
-//                            carton[i][j] = "";
-//                            cont++;
-//
-//                        }
-//                    }
-//
-//                }
-//                System.out.println("Cont: " + cont);
-//            }
-//
-//        }
-//    }
-//Este método permite crear el carton con todos los requisitos
+    private void generarEspacios() {
+        Random rdn = new Random();
+        int espacio1, espacio2, espacio3, espacio4;
+        int cont = 0; //Con este contado sabré los espacios que me quedan por poner en la tercera fila
+        //Recorremos la primera fila del cartón, le llamo j porque está invertido el recorrido, ya que utilizo una matriz de 9x3
+        for (int j = carton[0].length - 1; j >= 0; j--) {
+            //Debemos tener por fila cuatro espacios, por la tanto uso el metodo areNumDiferents para sacar cuatros espacios en indices difentes
+            do {
+                //Creamos 4 indices aleatorios donde poner los espacios
+                espacio1 = rdn.nextInt(9);
+                espacio2 = rdn.nextInt(9);
+                espacio3 = rdn.nextInt(9);
+                espacio4 = rdn.nextInt(9);
+            } while (!areNumDiferent(espacio1, espacio2, espacio3, espacio4)); //Salimos del bucle cuando los 4 números para los indices sean difentes
+            for (int i = 0; i < carton.length; i++) {
+                //Con este if accedemos solo a la primera y segunda fila
+                if (j == 2 || j == 1) { // Añadimos los espacios a la primera y segunda fila del cartón, no importa el indice en el que caigan los espacios
+                    carton[espacio1][j] = "";
+                    carton[espacio2][j] = "";
+                    carton[espacio3][j] = "";
+                    carton[espacio4][j] = "";
+                }
+                //Con este if entramos en la tercera fila, para colocar los espacios seguros, que será cuando la misma posicion de las dos filas superiores ya tengan números
+                if (j == 0) {
+                    if (!(carton[i][1].equals("") || carton[i][2].equals(""))) { //Con este if sabremos si en las posiciones superiores tienen dos números
+                        //Si es así estamos obligado a colocar ahí un espacio
+                        carton[i][j] = "";
+                        //Actualizamos el contador para finalmente saber cuantos espacios más debemos colocar en la tercera fila
+                        cont++;
+                    }
+                }
+
+            }
+        }
+        //Control de los espacios restantes de la tercera fila
+        //Si contador no vale cuatro es porque necesitamos colocar aún espacios en la tercera fila
+        
+        if (cont < 4) {
+            //Dentro debemos acceder solo a la última fila que para mi es carton[0]
+            for (String[] carton1 : carton) {
+                //Podremos poner los espacios que faltan si, en alguna de las dos posiciones de arriba de la propia columna, al menos hay un espacio
+                //Y además en la propia posición de la fila tres no hay un espacio ya.
+                if (!carton1[0].equals("") && (!carton1[2].equals("") || !carton1[1].equals(""))) {
+                    //Cumpliendo lo anterior podremos añadir un espacio y sumarselo al contador
+                    carton1[0] = "";
+                    cont++;
+                }
+                //Como estamos recorriendo la ultima fila entera saber que es lo que tenemos, debemos controlar que si cont ya vale 4 salir del bucle
+                if (cont == 4) {
+                    break;
+                }
+            }
+        }
+    }
+
+    //Este método permite crear el carton con todos los requisitos
     public void generarCarton() {
         int hasta = 9;
         int desde = 1;
@@ -198,10 +207,10 @@ public class Carton {
             desde += 10;
             hasta += 10;
         }
-//        generarEspacios();
+        generarEspacios();
     }
 
-    //Devuelve un String con un numero aleatorio entre desde y hasta 
+    //Devuelve un String con un numero aleatorio entre desde y hasta que pasamos por paramatros
     private String getNumEntre(int desde, int hasta) {
         Random rdn = new Random();
         return String.valueOf(rdn.nextInt(hasta - desde + 1) + desde);
@@ -212,7 +221,7 @@ public class Carton {
         //También tenemos que invertir j ya que el menor irá arriba y el menor irá abajo
         for (int j = carton[0].length - 1; j >= 0; j--) {
             for (int i = 0; i < carton.length; i++) {
-                System.out.print("i:" + i + " j:" + j + " " + carton[i][j] + "\t");
+                System.out.print("|\t" + carton[i][j] + "\t|");
                 if (i == 8) { //Cuando i vale 8 es cuando se produce el salto a una nueva fila del carton
                     System.out.println("");
                 }
