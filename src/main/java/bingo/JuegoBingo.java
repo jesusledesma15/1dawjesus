@@ -32,6 +32,12 @@ public class JuegoBingo {
         do {
             //control de la tecla pulsada
             controlarTecla(); //Hasta que no pulse enter para sacar bola no continuara la partida
+            //Imprimimos la bola que sale del bombo
+            String nBola = String.valueOf(bombo.expulsarBola());
+            System.out.println("Bola: " + nBola);
+            //Comprobamos si el número está en el cartón para tacharla
+            String tachar = (carton.tacharCasilla(nBola)) ? "Se ha tachado el número " + nBola : "No tienes el número " + nBola;
+            System.out.println(tachar);
            
         } while (!carton.isBingo()); //El juego termina el cartón canta bingo
         //Si sale del bucle es porque se ha hecho bingo y lo cantamos
