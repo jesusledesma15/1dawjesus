@@ -30,5 +30,13 @@ public class JuegoBingo {
         //Creamos nuestro carton
         carton.generarCarton();
 
+        System.out.println("Bienvenido al Bingo");
+        //Bucle del juego
+        do {
+          
+        } while (!carton.isBingo()); //El juego termina el cartón canta bingo
+        //Si sale del bucle es porque se ha hecho bingo y lo cantamos
+        System.out.println("BINGOOOO");
     }
+
 }
