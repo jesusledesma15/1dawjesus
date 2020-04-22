@@ -38,7 +38,22 @@ public class JuegoBingo {
             //Comprobamos si el número está en el cartón para tacharla
             String tachar = (carton.tacharCasilla(nBola)) ? "Se ha tachado el número " + nBola : "No tienes el número " + nBola;
             System.out.println(tachar);
-           
+            //Comprobamos si hace primera línea
+            if (carton.isFirstLine() && contL1 < 1) {
+                System.out.println("Primera línea completada");
+                contL1++;
+            }
+            //Comprobamos si hace segunda línea
+            if (carton.isSecondLine() && contL2 < 1) {
+                System.out.println("Segunda línea completada");
+                contL2++;
+            }
+            //Comprobamos si hace segunda línea
+            if (carton.isThirdLine() && contL3 < 1) {
+                System.out.println("Tercera línea completada");
+                contL3++;
+            }
+            
         } while (!carton.isBingo()); //El juego termina el cartón canta bingo
         //Si sale del bucle es porque se ha hecho bingo y lo cantamos
         System.out.println("BINGOOOO");
