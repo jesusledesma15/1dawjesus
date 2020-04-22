@@ -53,7 +53,8 @@ public class JuegoBingo {
                 System.out.println("Tercera línea completada");
                 contL3++;
             }
-            
+            //Imprimos el estado del cartón
+            carton.imprimirCarton();
         } while (!carton.isBingo()); //El juego termina el cartón canta bingo
         //Si sale del bucle es porque se ha hecho bingo y lo cantamos
         System.out.println("BINGOOOO");
