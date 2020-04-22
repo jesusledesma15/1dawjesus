@@ -16,27 +16,37 @@ import java.util.Scanner;
 public class JuegoBingo {
 
     public static void main(String[] args) {
-        //Instanciamos un objeto de tipo Scanner para la entrada por teclado
-        Scanner keyb = new Scanner(System.in);
+
         //Creación de objetos necesarios
         Bombo bombo = new Bombo();
         Carton carton = new Carton();
-        //Variable para guardar por teclado la tecla pulsada por el usuario
-        String tecla;
         //Contadores para que solo cante esa linea una sola vez en el blucle
         int contL1 = 0, contL2 = 0, contL3 = 0;
         //Rellenamos el bombo de bolas
         bombo.rellenarBombo();
         //Creamos nuestro carton
         carton.generarCarton();
-
+        
         System.out.println("Bienvenido al Bingo");
         //Bucle del juego
         do {
-          
+            //control de la tecla pulsada
+            controlarTecla(); //Hasta que no pulse enter para sacar bola no continuara la partida
+           
         } while (!carton.isBingo()); //El juego termina el cartón canta bingo
         //Si sale del bucle es porque se ha hecho bingo y lo cantamos
         System.out.println("BINGOOOO");
     }
 
+    public static void controlarTecla() {
+        //Instanciamos un objeto de tipo Scanner para la entrada por teclado
+        Scanner keyb = new Scanner(System.in);
+        //Variable para controlar la tecla pulsada del usuario
+        String tecla;
+        //Bucle control de la tecla pulsada
+        do {
+            System.out.print("Pulse enter para sacar bola: ");
+            tecla = keyb.nextLine();
+        } while (!tecla.equalsIgnoreCase(""));
+    }
 }
