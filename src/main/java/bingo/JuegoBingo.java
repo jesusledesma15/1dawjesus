@@ -5,8 +5,6 @@
  */
 package bingo;
 
-import bombo.Bombo;
-import carton.Carton;
 import java.util.Scanner;
 
 /**
