@@ -26,6 +26,7 @@ public class JuegoBingo {
         bombo.rellenarBombo();
         //Creamos nuestro carton
         carton.generarCarton();
+        carton.copyToFileTxt();
         
         System.out.println("Bienvenido al Bingo");
         //Bucle del juego
@@ -58,6 +59,7 @@ public class JuegoBingo {
         } while (!carton.isBingo()); //El juego termina el cartón canta bingo
         //Si sale del bucle es porque se ha hecho bingo y lo cantamos
         System.out.println("BINGOOOO");
+        carton.copyToFileTxt();
     }
 
     public static void controlarTecla() {
