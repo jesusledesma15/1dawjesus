@@ -5,6 +5,9 @@
  */
 package carton;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Random;
 
 /**
@@ -134,7 +137,7 @@ public class Carton {
         }
         //Control de los espacios restantes de la tercera fila
         //Si contador no vale cuatro es porque necesitamos colocar aún espacios en la tercera fila
-        
+
         if (cont < 4) {
             //Dentro debemos acceder solo a la última fila que para mi es carton[0]
             for (String[] carton1 : carton) {
@@ -226,6 +229,31 @@ public class Carton {
                     System.out.println("");
                 }
             }
+        }
+    }
+
+    public void copyToFileTxt() {
+        // Fichero a crear. Ruta relativa a la carpeta raíz del proyecto
+        String idfichero = "carton.txt";
+
+        // Array a escribir
+        // Estructura try-with-resources. Instancia el objeto con el fichero a escribir
+        // y se encarga de cerrar el recurso "flujo" una vez finalizadas las operaciones
+        try (BufferedWriter flujo = new BufferedWriter(new FileWriter(idfichero))) {
+            for (int j = carton[0].length - 1; j >= 0; j--) {
+                for (int i = 0; i < carton.length; i++) {
+                    flujo.write("|\t" + carton[i][j] + "\t|");
+                    if (i == 8) { //Cuando i vale 8 es cuando se produce el salto a una nueva fila del carton
+                        flujo.newLine();
+                    }
+                }
+            }
+            // Metodo fluh() guarda cambios en disco 
+            flujo.flush();
+            //Cerramos la conexion 
+            flujo.close();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
         }
     }
 
