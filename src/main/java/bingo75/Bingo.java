@@ -48,4 +48,9 @@ public abstract class Bingo {
         this.idJugador = idJugador;
     }
 
+    @Override
+    public String toString() {
+        return "Bingo{" + "id=" + id + ", fecha=" + fecha + ", idJugador=" + idJugador + '}';
+    }    
+    
 }
