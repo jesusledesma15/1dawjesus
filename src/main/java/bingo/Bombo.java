@@ -12,7 +12,7 @@ import java.util.Random;
  *
  * @author Jesus
  */
-public class Bombo {
+public abstract class Bombo {
 
     //Lista de números (bolas) atributo del bombo
     private ArrayList<Integer> bombo;
@@ -23,11 +23,8 @@ public class Bombo {
     }
 
     //Añade números desde 1-90 inclusives al bombo
-    public void rellenarBombo() {
-        for (int i = 1; i <= 90; i++) {
-            bombo.add(i);
-        }
-    }
+    public abstract void rellenarBombo();
+
     
     public int getBolasBombo(){
         return bombo.size();
