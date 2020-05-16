@@ -15,4 +15,12 @@ public final class BomboAmericano extends Bombo {
 
     public static final int CANTIDAD_BOLAS = 75;
 
+    //Permite rellenar el bombo con el número de bolas de un bingo Americano
+    @Override
+    public void rellenarBombo() {
+        for (int i = 1; i <= CANTIDAD_BOLAS; i++) {
+            getNumeros().add(i);
+        }
+    }
+
 }
