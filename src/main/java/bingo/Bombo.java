@@ -42,6 +42,10 @@ public abstract class Bombo {
         }
         return -1;
     }
+    
+    public boolean vacio(){
+        return this.bombo.isEmpty();
+    }
 
     //Imprime las bolas que hay dentro del bombo
     public void mostrarBombo() {
