@@ -22,20 +22,19 @@ public abstract class Bombo {
         this.bombo = new ArrayList<>();
     }
 
-    //Añade números desde 1-90 inclusives al bombo
     public abstract void rellenarBombo();
 
-    
-    public int getBolasBombo(){
+    //Metodo que dice el numero de bolas dentro
+    public int bolasDentro(){
         return bombo.size();
     }
 
     //Si la lista no está vacía, saca una posición aleatoria, borra esa posición y devuelve el número (bola) que habia en esa posición, si esta vacía devuelve -1
-    public int expulsarBola() {
+    public int sacarBola() {
         Random rdn = new Random();
         int numero;
         if (!bombo.isEmpty()) {
-            int posicion = rdn.nextInt(getBolasBombo()); //Posicion aleatoria del arraylist
+            int posicion = rdn.nextInt(bolasDentro()); //Posicion aleatoria del arraylist
             numero = bombo.get(posicion); //Lo guardamos antes de borrarlo para poder devolverlo sin que sea alterado.
             bombo.remove(posicion); //Borra la posicion aleatoria obtenida
             return numero;//Devolvemos el número que se ha obtenido en esa posición
@@ -43,6 +42,7 @@ public abstract class Bombo {
         return -1;
     }
     
+    //Devuelve true si la lista de numero esta vacia
     public boolean vacio(){
         return this.bombo.isEmpty();
     }
