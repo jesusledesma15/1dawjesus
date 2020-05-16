@@ -14,23 +14,23 @@ import java.util.Random;
  *
  * @author Jesus
  */
-public class Carton {
+public abstract class Carton {
 
     //Almacenará números, simbolos y espacios
-    private String[][] carton;
+    private int[][] carton;
 
     //Inicializamos el array en el constructor por defecto
     public Carton() {
         //El carton se creará verticalmente para que la lógica pueda seguir el orden natural de i j.
-        carton = new String[9][3];
+        carton = new int[9][3];
     }
 
     //Getters y setters
-    public String[][] getCarton() {
+    public int[][] getCarton() {
         return carton;
     }
 
-    public void setCarton(String[][] carton) {
+    public void setCarton(int[][] carton) {
         this.carton = carton;
     }
 
@@ -48,58 +48,58 @@ public class Carton {
         return distintos;
     }
 
-    //Recibe un número si este está en el cartón, se tacha añadiendo una X después del número
-    public boolean tacharCasilla(String numero) {
-        for (int i = 0; i < carton.length; i++) {
-            for (int j = 0; j < carton[0].length; j++) {
-                if (numero.equals(carton[i][j])) {
-                    carton[i][j] = numero + "X";
-                    return true;
-
-                }
-            }
-        }
-        return false;
-    }
+//    //Recibe un número si este está en el cartón, se tacha añadiendo una X después del número
+//    public boolean tacharCasilla(String numero) {
+//        for (int i = 0; i < carton.length; i++) {
+//            for (int j = 0; j < carton[0].length; j++) {
+//                if (numero.equals(carton[i][j])) {
+//                    carton[i][j] = numero + "X";
+//                    return true;
+//
+//                }
+//            }
+//        }
+//        return false;
+//    }
 
     //Devuelve true si la primera linea contiene 5 X
-    public boolean isFirstLine() {
-        int cont = 0;
-        for (String[] carton1 : carton) {
-            if (carton1[2].contains("X")) {
-                cont++;
-            }
-        }
-        return cont == 5;
-    }
+//    public boolean isFirstLine() {
+//        int cont = 0;
+//        for (String[] carton1 : carton) {
+//            if (carton1[2].contains("X")) {
+//                cont++;
+//            }
+//        }
+//        return cont == 5;
+//    }
 
     //Devuelve true si la segunda linea contiene 5 X
-    public boolean isSecondLine() {
-        int cont = 0;
-        for (String[] carton1 : carton) {
-            if (carton1[1].contains("X")) {
-                cont++;
-            }
-        }
-        return cont == 5;
-    }
+//    public boolean isSecondLine() {
+//        int cont = 0;
+//        for (String[] carton1 : carton) {
+//            if (carton1[1].contains("X")) {
+//                cont++;
+//            }
+//        }
+//        return cont == 5;
+//    }
 
     //Devuelve true si la tercera linea contiene 5 X
-    public boolean isThirdLine() {
-        int cont = 0;
-        for (String[] carton1 : carton) {
-            if (carton1[0].contains("X")) {
-                cont++;
-            }
-        }
-        return cont == 5;
-    }
+//    public boolean isThirdLine() {
+//        int cont = 0;
+//        for (String[] carton1 : carton) {
+//            if (carton1[0].contains("X")) {
+//                cont++;
+//            }
+//        }
+//        return cont == 5;
+//    }
 
     //Devuelve true si todas las lineas se han tachado
-    public boolean isBingo() {
-        return isFirstLine() && isSecondLine() && isThirdLine();
-
-    }
+    public abstract boolean isBingo();// {
+//        return isFirstLine() && isSecondLine() && isThirdLine();
+//
+//    }
 
     private void generarEspacios() {
         Random rdn = new Random();
@@ -118,16 +118,16 @@ public class Carton {
             for (int i = 0; i < carton.length; i++) {
                 //Con este if accedemos solo a la primera y segunda fila
                 if (j == 2 || j == 1) { // Añadimos los espacios a la primera y segunda fila del cartón, no importa el indice en el que caigan los espacios
-                    carton[espacio1][j] = "";
-                    carton[espacio2][j] = "";
-                    carton[espacio3][j] = "";
-                    carton[espacio4][j] = "";
+                    carton[espacio1][j] = 0;
+                    carton[espacio2][j] = 0;
+                    carton[espacio3][j] = 0;
+                    carton[espacio4][j] = 0;
                 }
                 //Con este if entramos en la tercera fila, para colocar los espacios seguros, que será cuando la misma posicion de las dos filas superiores ya tengan números
                 if (j == 0) {
-                    if (!(carton[i][1].equals("") || carton[i][2].equals(""))) { //Con este if sabremos si en las posiciones superiores tienen dos números
+                    if (!(carton[i][1]==0 || carton[i][2]==0)) { //Con este if sabremos si en las posiciones superiores tienen dos números
                         //Si es así estamos obligado a colocar ahí un espacio
-                        carton[i][j] = "";
+                        carton[i][j] = 0;
                         //Actualizamos el contador para finalmente saber cuantos espacios más debemos colocar en la tercera fila
                         cont++;
                     }
@@ -140,12 +140,12 @@ public class Carton {
 
         if (cont < 4) {
             //Dentro debemos acceder solo a la última fila que para mi es carton[0]
-            for (String[] carton1 : carton) {
+            for (int[] carton1 : carton) {
                 //Podremos poner los espacios que faltan si, en alguna de las dos posiciones de arriba de la propia columna, al menos hay un espacio
                 //Y además en la propia posición de la fila tres no hay un espacio ya.
-                if (!carton1[0].equals("") && (!carton1[2].equals("") || !carton1[1].equals(""))) {
+                if (carton1[0]!=0 && (carton1[2]!=0 || carton1[1]!=0)) {
                     //Cumpliendo lo anterior podremos añadir un espacio y sumarselo al contador
-                    carton1[0] = "";
+                    carton1[0] = 0;
                     cont++;
                 }
                 //Como estamos recorriendo la ultima fila entera saber que es lo que tenemos, debemos controlar que si cont ya vale 4 salir del bucle
@@ -170,40 +170,40 @@ public class Carton {
                 hasta++;
             }
             //Creacion de los números aleatorios por fila
-            String n1 = getNumEntre(desde, hasta), n2 = getNumEntre(desde, hasta), n3 = getNumEntre(desde, hasta);
+            int n1 = getNumEntre(desde, hasta), n2 = getNumEntre(desde, hasta), n3 = getNumEntre(desde, hasta);
 
             for (int j = 0; j < carton[0].length; j++) {
                 //Control para el primer numero de cada columna
                 //El número siempre va a ser mas chico por tres números que el numero "hasta" de esa columna
-                if (Integer.parseInt(n1) <= hasta - 4) {
+                if (n1 <= hasta - 4) {
                     carton[i][2] = n1;
                 } else {
                     //Hasta que no salga un número con dicho requisito no podemos asignarlo a la primera posición
                     do {
                         n1 = getNumEntre(desde, hasta);
-                    } while (Integer.parseInt(n1) > hasta - 4);
+                    } while (n1 > hasta - 4);
 
                 }
                 //Control para el segundo numero de cada columna
                 //El número siempre va a ser mas chico por dos números que el numero hasta de esa columna, además va a ser mayor que el número de arriba
-                if (Integer.parseInt(n2) <= hasta - 3 && Integer.parseInt(n2) > Integer.parseInt(n1)) {
+                if (n2 <= hasta - 3 && n2 > (n1)) {
                     carton[i][1] = n2;
                 } else {
                     //Hasta que no salga un número con dichos requisitos no podemos asignarlo a la primera posición
                     do {
                         n2 = getNumEntre(desde, hasta);
-                    } while (Integer.parseInt(n2) > hasta - 3 || Integer.parseInt(n2) <= Integer.parseInt(n1));
+                    } while (n2 > hasta - 3 || n2 <= n1);
                 }
 
                 //Control para el tercer numero de cada columna
                 //El número siempre va a ser mayor que el número de arriba
-                if (Integer.parseInt(n3) > Integer.parseInt(n2)) {
+                if (n3 > n2) {
                     carton[i][0] = n3;
                 } else {
                     //Hasta que no salga un número con dichos requisitos no podemos asignarlo a la primera posición
                     do {
                         n3 = getNumEntre(desde, hasta);
-                    } while (Integer.parseInt(n3) <= Integer.parseInt(n2));
+                    } while (n3 <= n2);
                 }
             }
             //Actualizamos los números que tendrá la siguiente fila
@@ -214,9 +214,9 @@ public class Carton {
     }
 
     //Devuelve un String con un numero aleatorio entre desde y hasta que pasamos por paramatros
-    private String getNumEntre(int desde, int hasta) {
+    private int getNumEntre(int desde, int hasta) {
         Random rdn = new Random();
-        return String.valueOf(rdn.nextInt(hasta - desde + 1) + desde);
+        return (rdn.nextInt(hasta - desde + 1) + desde);
     }
 
     public void imprimirCarton() {
@@ -224,6 +224,7 @@ public class Carton {
         //También tenemos que invertir j ya que el menor irá arriba y el menor irá abajo
         for (int j = carton[0].length - 1; j >= 0; j--) {
             for (int i = 0; i < carton.length; i++) {
+                
                 System.out.print("|\t" + carton[i][j] + "\t|");
                 if (i == 8) { //Cuando i vale 8 es cuando se produce el salto a una nueva fila del carton
                     System.out.println("");
