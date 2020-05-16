@@ -13,5 +13,6 @@ import bingo.Bombo;
  */
 public final class BomboAmericano extends Bombo {
 
+    public static final int CANTIDAD_BOLAS = 75;
 
 }
