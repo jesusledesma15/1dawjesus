@@ -25,6 +25,14 @@ public enum Patron {
         this.casillas = casillas;
         this.descripcion = descripcion;
     }
+
+    public ArrayList<Point> getCasillas() {
+        return casillas;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
     
     
 }
