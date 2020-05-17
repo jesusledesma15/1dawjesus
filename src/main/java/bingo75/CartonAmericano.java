@@ -16,5 +16,14 @@ public final class CartonAmericano {
         this.premio = premio;
     }
     
+    public void generarCarton(){
+        
+    }
+
+    public Patron getPremio() {
+        return premio;
+    }
+    
+    
     
 }
