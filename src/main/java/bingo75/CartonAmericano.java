@@ -23,7 +23,10 @@ public final class CartonAmericano {
     public Patron getPremio() {
         return premio;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return "CartonAmericano{" + "premio=" + premio + '}';
+    }        
     
 }
