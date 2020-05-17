@@ -11,4 +11,10 @@ package bingo75;
  */
 public final class CartonAmericano {
     private Patron premio;
+
+    public CartonAmericano(Patron premio) {
+        this.premio = premio;
+    }
+    
+    
 }
