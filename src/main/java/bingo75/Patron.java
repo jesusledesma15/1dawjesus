@@ -20,6 +20,11 @@ public enum Patron {
     
     private ArrayList<Point> casillas;
     private String descripcion;
+
+    private Patron(ArrayList<Point> casillas, String descripcion) {
+        this.casillas = casillas;
+        this.descripcion = descripcion;
+    }
     
     
 }
