@@ -69,4 +69,14 @@ public enum Patron {
         return patron;
     }
 
+    public ArrayList<Point> formaT() {
+        ArrayList<Point> patron = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            patron.add(new Point(0, i));
+            patron.add(new Point(2, i));
+        }
+        return patron;
+    }
+
+
 }
