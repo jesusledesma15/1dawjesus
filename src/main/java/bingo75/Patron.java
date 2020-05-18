@@ -14,12 +14,14 @@ import java.util.ArrayList;
  */
 public enum Patron {
 
-    CARTON_LLENO(),
-    FORMA_X(),
-    FORMA_Y;
+    CARTON_LLENO(cartonLLeno(),"Carton lleno"),
+    FORMA_X(formaX(),"Forma de X"),
+    FORMA_CRUZ(formaCruz(),"Forma de +"),
+    FORMA_T(formaT(),"Forma de T"),
+    FORMA_L(formaL(),"Forma de L");
 
-    private ArrayList<Point> casillas;
-    private String descripcion;
+    private final ArrayList<Point> casillas;
+    private final String descripcion;
 
     private Patron(ArrayList<Point> casillas, String descripcion) {
         this.casillas = casillas;
@@ -34,7 +36,7 @@ public enum Patron {
         return descripcion;
     }
 
-    public ArrayList<Point> cartonLLeno() {
+    public static ArrayList<Point> cartonLLeno() {
         ArrayList<Point> patron = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 5; j++) {
@@ -46,7 +48,7 @@ public enum Patron {
         return patron;
     }
 
-    public ArrayList<Point> formaX() {
+    public static ArrayList<Point> formaX() {
         ArrayList<Point> patron = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
             patron.add(new Point(i, i));
@@ -60,7 +62,7 @@ public enum Patron {
         return patron;
     }
 
-    public ArrayList<Point> formaCruz() {
+    public static ArrayList<Point> formaCruz() {
         ArrayList<Point> patron = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
             patron.add(new Point(i, 2));
@@ -69,7 +71,7 @@ public enum Patron {
         return patron;
     }
 
-    public ArrayList<Point> formaT() {
+    public static ArrayList<Point> formaT() {
         ArrayList<Point> patron = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
             patron.add(new Point(0, i));
@@ -78,7 +80,7 @@ public enum Patron {
         return patron;
     }
 
-    public ArrayList<Point> formaL() {
+    public static ArrayList<Point> formaL() {
         ArrayList<Point> patron = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
             patron.add(new Point(i, 2));
