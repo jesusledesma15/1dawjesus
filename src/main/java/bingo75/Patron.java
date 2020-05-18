@@ -13,11 +13,11 @@ import java.util.ArrayList;
  * @author Jesus
  */
 public enum Patron {
-    
+
     CARTON_LLENO(),
     FORMA_X(),
     FORMA_Y;
-    
+
     private ArrayList<Point> casillas;
     private String descripcion;
 
@@ -33,6 +33,16 @@ public enum Patron {
     public String getDescripcion() {
         return descripcion;
     }
-    
-    
+
+    public ArrayList<Point> cartonLLeno(int tam) {
+        ArrayList<Point> patron = new ArrayList<>();
+        for (int i = 0; i < tam; i++) {
+            for (int j = 0; j < 10; j++) {
+                patron.add(new Point(i, j));
+            }
+
+        }
+
+        return patron;
+    }
 }
