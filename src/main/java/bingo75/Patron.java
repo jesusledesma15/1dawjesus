@@ -34,14 +34,28 @@ public enum Patron {
         return descripcion;
     }
 
-    public ArrayList<Point> cartonLLeno(int tam) {
+    public ArrayList<Point> cartonLLeno() {
         ArrayList<Point> patron = new ArrayList<>();
-        for (int i = 0; i < tam; i++) {
-            for (int j = 0; j < 10; j++) {
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 5; j++) {
                 patron.add(new Point(i, j));
             }
 
         }
+
+        return patron;
+    }
+
+    public ArrayList<Point> formaX(int tam) {
+        ArrayList<Point> patron = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            patron.add(new Point(i, i));
+
+        }
+        patron.add(new Point(0, 4));
+        patron.add(new Point(1, 3));
+        patron.add(new Point(3, 2));
+        patron.add(new Point(4, 1));
 
         return patron;
     }
