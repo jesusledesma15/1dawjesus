@@ -46,7 +46,7 @@ public enum Patron {
         return patron;
     }
 
-    public ArrayList<Point> formaX(int tam) {
+    public ArrayList<Point> formaX() {
         ArrayList<Point> patron = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
             patron.add(new Point(i, i));
@@ -55,8 +55,18 @@ public enum Patron {
         patron.add(new Point(0, 4));
         patron.add(new Point(1, 3));
         patron.add(new Point(3, 2));
-        patron.add(new Point(4, 1));
+        patron.add(new Point(4, 0));
 
         return patron;
     }
+
+    public ArrayList<Point> formaCruz() {
+        ArrayList<Point> patron = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            patron.add(new Point(i, 2));
+            patron.add(new Point(2, i));
+        }
+        return patron;
+    }
+
 }
