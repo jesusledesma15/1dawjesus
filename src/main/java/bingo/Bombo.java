@@ -6,7 +6,6 @@
 package bingo;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 /**
  *
@@ -31,15 +30,7 @@ public abstract class Bombo {
 
     //Si la lista no está vacía, saca una posición aleatoria, borra esa posición y devuelve el número (bola) que habia en esa posición, si esta vacía devuelve -1
     public int sacarBola() {
-        Random rdn = new Random();
-        int numero;
-        if (!bombo.isEmpty()) {
-            int posicion = rdn.nextInt(bolasDentro()); //Posicion aleatoria del arraylist
-            numero = bombo.get(posicion); //Lo guardamos antes de borrarlo para poder devolverlo sin que sea alterado.
-            bombo.remove(posicion); //Borra la posicion aleatoria obtenida
-            return numero;//Devolvemos el número que se ha obtenido en esa posición
-        }
-        return -1;
+        return bombo.remove(0);
     }
     
     //Devuelve true si la lista de numero esta vacia
@@ -55,13 +46,9 @@ public abstract class Bombo {
         System.out.println("");
     }
 
-    //Getter y Setter
+    //Getter
     public ArrayList<Integer> getNumeros() {
         return bombo;
-    }
-
-    public void setNumeros(ArrayList<Integer> numeros) {
-        this.bombo = numeros;
     }
 
 }
