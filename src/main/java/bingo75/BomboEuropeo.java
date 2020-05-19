@@ -15,6 +15,14 @@ import java.util.Collections;
 public final class BomboEuropeo extends Bombo {
 
     public static final int CANTIDAD_BOLAS = 90;
+    
+      @Override
+    public void rellenarBombo() {
+        for (int i = 1; i <= CANTIDAD_BOLAS; i++) {
+            getNumeros().add(i);
+        }
+        Collections.shuffle(getNumeros());
+    }
 
     
 }
