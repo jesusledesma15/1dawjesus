@@ -20,9 +20,9 @@ public abstract class Carton {
     private int[][] carton;
 
     //Inicializamos el array en el constructor por defecto
-    public Carton() {
+    public Carton(int filas, int columnas) {
         //El carton se creará verticalmente para que la lógica pueda seguir el orden natural de i j.
-        carton = new int[9][3];
+        carton = new int[filas][columnas];
     }
 
     //Getters y setters
