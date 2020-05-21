@@ -6,8 +6,6 @@
 package bingo75;
 
 import bingo.Carton;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Random;
 
 /**
@@ -58,9 +56,23 @@ public final class CartonAmericano extends Carton {
     public void generarCarton() {
         for (int i = 0; i < premio.getCasillas().size(); i++) {
             for (int j = 0; j < premio.getCasillas().size(); j++) {
-                premio.getCasillas().get(i).x = 1;
+                getCarton()[0][0] = 1;
             }
         }
+    }
+
+    @Override
+    public void imprimirCarton() {
+        System.out.println("B\tI\tN\tG\tO");
+        for (int i = 0; i < getCarton().length; i++) {
+            for (int j = 0; j < getCarton()[0].length; j++) {
+                System.out.print(getCarton()[i][j] + "\t");
+                if (j == 4) {
+                    System.out.println("");
+                }
+            }
+        }
+
     }
 
     public Patron getPremio() {
@@ -81,5 +93,4 @@ public final class CartonAmericano extends Carton {
         Random rdn = new Random();
         return (rdn.nextInt(hasta - desde + 1) + desde);
     }
-
 }
