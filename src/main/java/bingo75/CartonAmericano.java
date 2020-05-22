@@ -27,7 +27,7 @@ public final class CartonAmericano extends Carton {
     private Patron patronRandom() {
         Random rdm = new Random();
 
-        switch (rdm.nextInt(3)) {
+        switch (rdm.nextInt(4)) {
             case 0:
                 return Patron.CARTON_LLENO;
             case 1:
@@ -44,7 +44,7 @@ public final class CartonAmericano extends Carton {
     private ArrayList<Integer> numDistintos(int desde, int hasta) {
         ArrayList<Integer> numDistintos = new ArrayList<>();
         int numero;
-        while (numDistintos.size() != 6) {
+        while (numDistintos.size() != COLUMNAS+1) {
             numero = getNumEntre(desde, hasta);
             if (!numDistintos.contains(numero)) {
                 numDistintos.add(numero);
@@ -64,19 +64,19 @@ public final class CartonAmericano extends Carton {
         for (int i = 0; i < premio.getCasillas().size(); i++) {
             switch (premio.getCasillas().get(i).y) {
                 case 0:
-                    getCarton()[premio.getCasillas().get(i).x][premio.getCasillas().get(i).y] = y0.remove(y0.size() - 1);
+                    getCarton()[premio.getCasillas().get(i).x][premio.getCasillas().get(i).y] = y0.remove(0);
                     break;
                 case 1:
-                    getCarton()[premio.getCasillas().get(i).x][premio.getCasillas().get(i).y] = y1.remove(y1.size() - 1);
+                    getCarton()[premio.getCasillas().get(i).x][premio.getCasillas().get(i).y] = y1.remove(0);
                     break;
                 case 2:
-                    getCarton()[premio.getCasillas().get(i).x][premio.getCasillas().get(i).y] = y2.remove(y2.size() - 1);
+                    getCarton()[premio.getCasillas().get(i).x][premio.getCasillas().get(i).y] = y2.remove(0);
                     break;
                 case 3:
-                    getCarton()[premio.getCasillas().get(i).x][premio.getCasillas().get(i).y] = y3.remove(y3.size() - 1);
+                    getCarton()[premio.getCasillas().get(i).x][premio.getCasillas().get(i).y] = y3.remove(0);
                     break;
                 case 4:
-                    getCarton()[premio.getCasillas().get(i).x][premio.getCasillas().get(i).y] = y4.remove(y4.size() - 1);
+                    getCarton()[premio.getCasillas().get(i).x][premio.getCasillas().get(i).y] = y4.remove(0);
                     break;
             }
 
@@ -114,5 +114,12 @@ public final class CartonAmericano extends Carton {
     private int getNumEntre(int desde, int hasta) {
         Random rdn = new Random();
         return (rdn.nextInt(hasta - desde + 1) + desde);
+    }
+
+    public static void main(String[] args) {
+        CartonAmericano c = new CartonAmericano();
+        c.generarCarton();
+        System.out.println(c.getPremio());
+        c.imprimirCarton();
     }
 }
