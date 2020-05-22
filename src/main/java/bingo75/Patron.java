@@ -65,7 +65,7 @@ public enum Patron {
     public static ArrayList<Point> formaCruz() {
         ArrayList<Point> patron = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
-            patron.add(new Point(0, 2));
+            patron.add(new Point(i, 2));
             patron.add(new Point(2, i));
         }
         return patron;
