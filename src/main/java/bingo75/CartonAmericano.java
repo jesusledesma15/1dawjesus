@@ -88,8 +88,9 @@ public final class CartonAmericano extends Carton {
     public void imprimirCarton() {
         System.out.println("B\tI\tN\tG\tO");
         for (int i = 0; i < getCarton().length; i++) {
-            for (int j = 0; j < getCarton()[0].length; j++) {
-                System.out.print(getCarton()[i][j] + "\t");
+            for (int j = 0; j < getCarton().length; j++) {
+                String valor = getCarton()[i][j] == 0 ? "" : String.valueOf(getCarton()[i][j]);
+                System.out.print(valor + "\t");
                 if (j == 4) {
                     System.out.println("");
                 }
