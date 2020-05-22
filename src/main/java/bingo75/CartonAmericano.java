@@ -27,7 +27,7 @@ public final class CartonAmericano extends Carton {
     private Patron patronRandom() {
         Random rdm = new Random();
 
-        switch (rdm.nextInt(4)) {
+        switch (rdm.nextInt(5)) {
             case 0:
                 return Patron.CARTON_LLENO;
             case 1:
@@ -36,15 +36,16 @@ public final class CartonAmericano extends Carton {
                 return Patron.FORMA_L;
             case 3:
                 return Patron.FORMA_T;
-            default:
+            case 4:
                 return Patron.FORMA_X;
         }
+        return null;
     }
 
     private ArrayList<Integer> numDistintos(int desde, int hasta) {
         ArrayList<Integer> numDistintos = new ArrayList<>();
         int numero;
-        while (numDistintos.size() != COLUMNAS+1) {
+        while (numDistintos.size() != COLUMNAS + 1) {
             numero = getNumEntre(desde, hasta);
             if (!numDistintos.contains(numero)) {
                 numDistintos.add(numero);
