@@ -6,6 +6,7 @@
 package bingo75;
 
 import bingo.Carton;
+import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -110,7 +111,14 @@ public final class CartonAmericano extends Carton {
 
     @Override
     public boolean isBingo() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        boolean isBingo = false;
+        for (Point punto : this.premio.getCasillas()) {
+            isBingo = (punto.getX()<0 && punto.getY()<0);
+            if (!isBingo) {
+                break;
+            }
+        }
+        return isBingo;
     }
 
     private int getNumEntre(int desde, int hasta) {
