@@ -5,6 +5,8 @@
  */
 package bingo;
 
+import bingo75.BomboAmericano;
+import bingo75.CartonAmericano;
 import java.util.Scanner;
 
 /**
@@ -15,49 +17,22 @@ public class JuegoBingo {
 
     public static void main(String[] args) {
 
-        //Creación de objetos necesarios
-        Bombo bombo = new Bombo();
-        Carton carton = new Carton();
-        //Contadores para que solo cante esa linea una sola vez en el blucle
-        int contL1 = 0, contL2 = 0, contL3 = 0;
-        //Rellenamos el bombo de bolas
-        bombo.rellenarBombo();
-        //Creamos nuestro carton
-        carton.generarCarton();
-        carton.copyToFileTxt();
-        
-        System.out.println("Bienvenido al Bingo");
-        //Bucle del juego
+        BomboAmericano bombo75 = new BomboAmericano();
+        CartonAmericano carton75 = new CartonAmericano();
+        bombo75.rellenarBombo();
+        carton75.generarCarton();
+        carton75.imprimirCarton();
         do {
-            //control de la tecla pulsada
-            controlarTecla(); //Hasta que no pulse enter para sacar bola no continuara la partida
-            //Imprimimos la bola que sale del bombo
-            String nBola = String.valueOf(bombo.expulsarBola());
-            System.out.println("Bola: " + nBola);
-            //Comprobamos si el número está en el cartón para tacharla
-            String tachar = (carton.tacharCasilla(nBola)) ? "Se ha tachado el número " + nBola : "No tienes el número " + nBola;
-            System.out.println(tachar);
-            //Comprobamos si hace primera línea
-            if (carton.isFirstLine() && contL1 < 1) {
-                System.out.println("Primera línea completada");
-                contL1++;
-            }
-            //Comprobamos si hace segunda línea
-            if (carton.isSecondLine() && contL2 < 1) {
-                System.out.println("Segunda línea completada");
-                contL2++;
-            }
-            //Comprobamos si hace segunda línea
-            if (carton.isThirdLine() && contL3 < 1) {
-                System.out.println("Tercera línea completada");
-                contL3++;
-            }
-            //Imprimos el estado del cartón
-            carton.imprimirCarton();
-        } while (!carton.isBingo()); //El juego termina el cartón canta bingo
-        //Si sale del bucle es porque se ha hecho bingo y lo cantamos
-        System.out.println("BINGOOOO");
-        carton.copyToFileTxt();
+            controlarTecla();
+            int num = bombo75.sacarBola();
+            System.out.println("Sale el " + num);
+            System.out.println((carton75.tacharCasilla(num).getX() == -1 && carton75.tacharCasilla(num).getX() == -1) ? "No lo tienes" : "Se ha tachado el " + num);
+            carton75.imprimirCarton();
+
+        } while (!carton75.isBingo());
+
+        carton75.generarCarton();
+        carton75.imprimirCarton();
     }
 
     public static void controlarTecla() {
