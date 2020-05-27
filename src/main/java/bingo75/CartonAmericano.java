@@ -16,7 +16,7 @@ import java.util.Random;
  */
 public final class CartonAmericano extends Carton {
 
-    private Patron premio;
+    private final Patron premio;
     public static final int COLUMNAS = 5;
     public static final int FILAS = 5;
 
@@ -124,12 +124,5 @@ public final class CartonAmericano extends Carton {
     private int getNumEntre(int desde, int hasta) {
         Random rdn = new Random();
         return (rdn.nextInt(hasta - desde + 1) + desde);
-    }
-
-    public static void main(String[] args) {
-        CartonAmericano c = new CartonAmericano();
-        c.generarCarton();
-        System.out.println(c.getPremio());
-        c.imprimirCarton();
     }
 }
