@@ -6,6 +6,7 @@
 package bingo75;
 
 import bingo.Bombo;
+import java.util.Collections;
 
 /**
  *
@@ -21,6 +22,7 @@ public final class BomboAmericano extends Bombo {
         for (int i = 1; i <= CANTIDAD_BOLAS; i++) {
             getNumeros().add(i);
         }
+        Collections.shuffle(getNumeros());
     }
 
 }
