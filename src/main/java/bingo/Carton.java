@@ -5,6 +5,7 @@
  */
 package bingo;
 
+import java.awt.Point;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -32,6 +33,18 @@ public abstract class Carton {
 
     public void setCarton(int[][] carton) {
         this.carton = carton;
+    }
+    
+    public Point tacharCasilla(int num){
+        for (int i = 0; i < carton.length; i++) {
+            for (int j = 0; j < carton[0].length; j++) {
+                if (carton[i][j] == num) {
+                    carton[i][j] = num*-1;
+                    return new Point(i, j);
+                }
+            }
+        }
+        return new Point(-1, -1);
     }
 
     //Creado para el metodo generarEspacios()
@@ -61,7 +74,6 @@ public abstract class Carton {
 //        }
 //        return false;
 //    }
-
     //Devuelve true si la primera linea contiene 5 X
 //    public boolean isFirstLine() {
 //        int cont = 0;
@@ -72,7 +84,6 @@ public abstract class Carton {
 //        }
 //        return cont == 5;
 //    }
-
     //Devuelve true si la segunda linea contiene 5 X
 //    public boolean isSecondLine() {
 //        int cont = 0;
@@ -83,7 +94,6 @@ public abstract class Carton {
 //        }
 //        return cont == 5;
 //    }
-
     //Devuelve true si la tercera linea contiene 5 X
 //    public boolean isThirdLine() {
 //        int cont = 0;
@@ -94,7 +104,6 @@ public abstract class Carton {
 //        }
 //        return cont == 5;
 //    }
-
     //Devuelve true si todas las lineas se han tachado
     public abstract boolean isBingo();// {
 //        return isFirstLine() && isSecondLine() && isThirdLine();
@@ -125,7 +134,7 @@ public abstract class Carton {
                 }
                 //Con este if entramos en la tercera fila, para colocar los espacios seguros, que será cuando la misma posicion de las dos filas superiores ya tengan números
                 if (j == 0) {
-                    if (!(carton[i][1]==0 || carton[i][2]==0)) { //Con este if sabremos si en las posiciones superiores tienen dos números
+                    if (!(carton[i][1] == 0 || carton[i][2] == 0)) { //Con este if sabremos si en las posiciones superiores tienen dos números
                         //Si es así estamos obligado a colocar ahí un espacio
                         carton[i][j] = 0;
                         //Actualizamos el contador para finalmente saber cuantos espacios más debemos colocar en la tercera fila
@@ -143,7 +152,7 @@ public abstract class Carton {
             for (int[] carton1 : carton) {
                 //Podremos poner los espacios que faltan si, en alguna de las dos posiciones de arriba de la propia columna, al menos hay un espacio
                 //Y además en la propia posición de la fila tres no hay un espacio ya.
-                if (carton1[0]!=0 && (carton1[2]!=0 || carton1[1]!=0)) {
+                if (carton1[0] != 0 && (carton1[2] != 0 || carton1[1] != 0)) {
                     //Cumpliendo lo anterior podremos añadir un espacio y sumarselo al contador
                     carton1[0] = 0;
                     cont++;
@@ -157,7 +166,7 @@ public abstract class Carton {
     }
 
     //Este método permite crear el carton con todos los requisitos
-    public  abstract void generarCarton();// {
+    public abstract void generarCarton();// {
 //        int hasta = 9;
 //        int desde = 1;
 //        for (int i = 0; i < carton.length; i++) {
@@ -214,18 +223,18 @@ public abstract class Carton {
 //    }
 
     //Devuelve un String con un numero aleatorio entre desde y hasta que pasamos por paramatros
-    private int getNumEntre(int desde, int hasta) {
-        Random rdn = new Random();
-        return (rdn.nextInt(hasta - desde + 1) + desde);
-    }
+//    public abstract int getNumEntre(int desde, int hasta); //{
+//            Random rdn = new Random();
+//            return (rdn.nextInt(hasta - desde + 1) + desde);
+//        }
 
     public void imprimirCarton() {
         //Al tener la lógica montada para un cartón vertical, tenemos que imprimirlo en horizontal, por lo tanto invertimos i y j.
         //También tenemos que invertir j ya que el menor irá arriba y el menor irá abajo
         for (int j = carton[0].length - 1; j >= 0; j--) {
             for (int i = 0; i < carton.length; i++) {
-                
-                System.out.print("|\t" + carton[i][j] + "\t|");
+
+                System.out.print("|\t" +"i"+i+" j"+ carton[i][j] + "\t|");
                 if (i == 8) { //Cuando i vale 8 es cuando se produce el salto a una nueva fila del carton
                     System.out.println("");
                 }
@@ -244,7 +253,7 @@ public abstract class Carton {
             for (int j = carton[0].length - 1; j >= 0; j--) {
                 for (int i = 0; i < carton.length; i++) {
                     flujo.write("|\t" + carton[i][j] + "\t|");
-                    if (i == 8) { //Cuando i vale 8 es cuando se produce el salto a una nueva fila del carton
+                    if (i == 5) { //Cuando i vale 8 es cuando se produce el salto a una nueva fila del carton
                         flujo.newLine();
                     }
                 }
