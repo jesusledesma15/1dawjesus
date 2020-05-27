@@ -113,7 +113,7 @@ public final class CartonAmericano extends Carton {
     public boolean isBingo() {
         boolean isBingo = false;
         for (Point punto : this.premio.getCasillas()) {
-            isBingo = (punto.getX()<0 && punto.getY()<0);
+            isBingo = getCarton()[(int) punto.getX()][(int) punto.getY()] < 0;
             if (!isBingo) {
                 break;
             }
