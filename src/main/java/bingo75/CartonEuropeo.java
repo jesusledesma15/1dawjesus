@@ -31,7 +31,17 @@ public class CartonEuropeo extends Carton {
         return cont == 5;
     }
 
-    
+    //Devuelve true si la segunda linea contiene 5 X
+    public boolean isSecondLine() {
+        int cont = 0;
+        for (String[] carton1 : carton) {
+            if (carton1[1].contains("X")) {
+                cont++;
+            }
+        }
+        return cont == 5;
+    }
+
 
     @Override
     public void generarCarton() {
