@@ -20,10 +20,18 @@ public class CartonEuropeo extends Carton {
         super(FILAS, COLUMNAS);
     }
 
-    @Override
-    public boolean isBingo() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    //Devuelve true si la primera linea contiene 5 X
+    public boolean isFirstLine() {
+        int cont = 0;
+        for (String[] carton1 : carton) {
+            if (carton1[2].contains("X")) {
+                cont++;
+            }
+        }
+        return cont == 5;
     }
+
+    
 
     @Override
     public void generarCarton() {
