@@ -137,6 +137,58 @@ public class CartonEuropeo extends Carton {
 
     @Override
     public void generarCarton() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        int hasta = 9;
+        int desde = 1;
+        for (int i = 0; i < getCarton().length; i++) {
+            //Este if controla que apartir de la segunda columna en el carton puedan empezar por 10,20,30,40,50,60,70,80
+            if (i == 1) {
+                desde--;
+            }
+            //Este if permite que la ultima columna pueda tener el 90 también
+            if (i == 8) {
+                hasta++;
+            }
+            //Creacion de los números aleatorios por fila
+            int n1 = getNumEntre(desde, hasta), n2 = getNumEntre(desde, hasta), n3 = getNumEntre(desde, hasta);
+
+            for (int j = 0; j < getCarton()[0].length; j++) {
+                //Control para el primer numero de cada columna
+                //El número siempre va a ser mas chico por tres números que el numero "hasta" de esa columna
+                if (n1 <= hasta - 4) {
+                    getCarton()[i][2] = n1;
+                } else {
+                    //Hasta que no salga un número con dicho requisito no podemos asignarlo a la primera posición
+                    do {
+                        n1 = getNumEntre(desde, hasta);
+                    } while (n1 > hasta - 4);
+
+                }
+                //Control para el segundo numero de cada columna
+                //El número siempre va a ser mas chico por dos números que el numero hasta de esa columna, además va a ser mayor que el número de arriba
+                if (n2 <= hasta - 3 && n2 > (n1)) {
+                    getCarton()[i][1] = n2;
+                } else {
+                    //Hasta que no salga un número con dichos requisitos no podemos asignarlo a la primera posición
+                    do {
+                        n2 = getNumEntre(desde, hasta);
+                    } while (n2 > hasta - 3 || n2 <= n1);
+                }
+
+                //Control para el tercer numero de cada columna
+                //El número siempre va a ser mayor que el número de arriba
+                if (n3 > n2) {
+                    getCarton()[i][0] = n3;
+                } else {
+                    //Hasta que no salga un número con dichos requisitos no podemos asignarlo a la primera posición
+                    do {
+                        n3 = getNumEntre(desde, hasta);
+                    } while (n3 <= n2);
+                }
+            }
+            //Actualizamos los números que tendrá la siguiente fila
+            desde += 10;
+            hasta += 10;
+        }
+        generarEspacios();
     }
 }
