@@ -35,6 +35,12 @@ public class CartonEuropeo extends Carton {
         return distintos;
     }
 
+    //Devuelve un String con un numero aleatorio entre desde y hasta que pasamos por paramatros
+    private int getNumEntre(int desde, int hasta) {
+        Random rdn = new Random();
+        return (rdn.nextInt(hasta - desde + 1) + desde);
+    }
+
     private void generarEspacios() {
         Random rdn = new Random();
         int espacio1, espacio2, espacio3, espacio4;
@@ -94,7 +100,7 @@ public class CartonEuropeo extends Carton {
     public boolean isFirstLine() {
         int cont = 0;
         for (int[] carton1 : getCarton()) {
-            if (carton1[2]==0) {
+            if (carton1[2] == 0) {
                 cont++;
             }
         }
@@ -105,7 +111,7 @@ public class CartonEuropeo extends Carton {
     public boolean isSecondLine() {
         int cont = 0;
         for (int[] carton1 : getCarton()) {
-            if (carton1[1]==0) {
+            if (carton1[1] == 0) {
                 cont++;
             }
         }
@@ -116,7 +122,7 @@ public class CartonEuropeo extends Carton {
     public boolean isThirdLine() {
         int cont = 0;
         for (int[] carton1 : getCarton()) {
-            if (carton1[0]==0) {
+            if (carton1[0] == 0) {
                 cont++;
             }
         }
