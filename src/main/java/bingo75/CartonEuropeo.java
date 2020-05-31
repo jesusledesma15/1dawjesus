@@ -20,7 +20,19 @@ public class CartonEuropeo extends Carton {
     public CartonEuropeo() {
         super(FILAS, COLUMNAS);
     }
-
+ //Creado para el metodo generarEspacios()
+    //Permite poner el espacio en indices diferentes, habrá 4 espacios por fila, devuelve true si todos los números son diferentes
+    private boolean areNumDiferent(int uno, int dos, int tres, int cuatro) {
+        boolean distintos = false;
+        if (uno != dos && uno != tres && uno != cuatro) {
+            if (dos != tres && dos != cuatro) {
+                if (tres != cuatro) {
+                    distintos = true;
+                }
+            }
+        }
+        return distintos;
+    }
     private void generarEspacios() {
         Random rdn = new Random();
         int espacio1, espacio2, espacio3, espacio4;
