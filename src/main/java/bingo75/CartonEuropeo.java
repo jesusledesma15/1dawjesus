@@ -52,7 +52,12 @@ public class CartonEuropeo extends Carton {
         }
         return cont == 5;
     }
+    //Devuelve true si todas las lineas se han tachado
 
+    @Override
+    public boolean isBingo() {
+        return isFirstLine() && isSecondLine() && isThirdLine();
+    }
 
     @Override
     public void generarCarton() {
