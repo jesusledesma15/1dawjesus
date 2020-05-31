@@ -20,7 +20,8 @@ public class CartonEuropeo extends Carton {
     public CartonEuropeo() {
         super(FILAS, COLUMNAS);
     }
- //Creado para el metodo generarEspacios()
+
+    //Creado para el metodo generarEspacios()
     //Permite poner el espacio en indices diferentes, habrá 4 espacios por fila, devuelve true si todos los números son diferentes
     private boolean areNumDiferent(int uno, int dos, int tres, int cuatro) {
         boolean distintos = false;
@@ -33,6 +34,7 @@ public class CartonEuropeo extends Carton {
         }
         return distintos;
     }
+
     private void generarEspacios() {
         Random rdn = new Random();
         int espacio1, espacio2, espacio3, espacio4;
@@ -92,7 +94,7 @@ public class CartonEuropeo extends Carton {
     public boolean isFirstLine() {
         int cont = 0;
         for (int[] carton1 : getCarton()) {
-            if (carton1[2].contains("X")) {
+            if (carton1[2]==0) {
                 cont++;
             }
         }
@@ -102,8 +104,8 @@ public class CartonEuropeo extends Carton {
     //Devuelve true si la segunda linea contiene 5 X
     public boolean isSecondLine() {
         int cont = 0;
-        for (int[] carton1 : carton) {
-            if (carton1[1].contains("X")) {
+        for (int[] carton1 : getCarton()) {
+            if (carton1[1]==0) {
                 cont++;
             }
         }
@@ -113,8 +115,8 @@ public class CartonEuropeo extends Carton {
     //Devuelve true si la tercera linea contiene 5 X
     public boolean isThirdLine() {
         int cont = 0;
-        for (String[] carton1 : carton) {
-            if (carton1[0].contains("X")) {
+        for (int[] carton1 : getCarton()) {
+            if (carton1[0]==0) {
                 cont++;
             }
         }
