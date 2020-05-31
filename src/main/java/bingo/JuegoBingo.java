@@ -50,5 +50,39 @@ public class JuegoBingo {
         System.out.println("BINGOOOOO!!");
     }
 
+    public static void jugarBingoEuropeo() {
+        BomboEuropeo bomboEU = new BomboEuropeo();
+        CartonEuropeo cartonEU = new CartonEuropeo();
+        bomboEU.rellenarBombo();
+        cartonEU.generarCarton();
+        cartonEU.imprimirCarton();
+        int contL1=0, contL2=0,contL3=0;
 
+        System.out.println("Bienvenido al Bingo Euroepo");
+        //Bucle del juego
+        do {
+            controlarTecla();
+            int num = bomboEU.sacarBola();
+            System.out.println("Sale el " + num);
+            System.out.println((cartonEU.tacharCasilla(num).getX() == -1 && cartonEU.tacharCasilla(num).getX() == -1) ? "No lo tienes" : "Se ha tachado el " + num);
+            cartonEU.imprimirCarton();
+            //Comprobamos si hace primera línea
+            if (cartonEU.isFirstLine() && contL1 < 1) {
+                System.out.println("Primera línea completada");
+                contL1++;
+            }
+            //Comprobamos si hace segunda línea
+            if (cartonEU.isSecondLine() && contL2 < 1) {
+                System.out.println("Segunda línea completada");
+                contL2++;
+            }
+            //Comprobamos si hace segunda línea
+            if (cartonEU.isThirdLine() && contL3 < 1) {
+                System.out.println("Tercera línea completada");
+                contL3++;
+            }
+        } while (!cartonEU.isBingo()); //El juego termina el cartón canta bingo
+        //Si sale del bucle es porque se ha hecho bingo y lo cantamos
+        System.out.println("BINGOOOO");
+    }
 }
