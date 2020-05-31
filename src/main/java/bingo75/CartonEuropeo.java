@@ -18,7 +18,7 @@ public class CartonEuropeo extends Carton {
     public static final int FILAS = 3;
 
     public CartonEuropeo() {
-        super(FILAS, COLUMNAS);
+        super(COLUMNAS, FILAS);
     }
 
     //Creado para el metodo generarEspacios()
