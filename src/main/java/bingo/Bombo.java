@@ -51,4 +51,10 @@ public abstract class Bombo {
         return bombo;
     }
 
+    @Override
+    public String toString() {
+        return "Bombo{" + "bombo=" + bombo + '}';
+    }
+       
+
 }
