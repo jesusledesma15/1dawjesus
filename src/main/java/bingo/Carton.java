@@ -72,19 +72,7 @@ public abstract class Carton {
 
 //    }
 
-    public void imprimirCarton() {
-        //Al tener la lógica montada para un cartón vertical, tenemos que imprimirlo en horizontal, por lo tanto invertimos i y j.
-        //También tenemos que invertir j ya que el menor irá arriba y el menor irá abajo
-        for (int j = carton[0].length - 1; j >= 0; j--) {
-            for (int i = 0; i < carton.length; i++) {
-
-                System.out.print("|\t" +"i"+i+" j"+ carton[i][j] + "\t|");
-                if (i == 8) { //Cuando i vale 8 es cuando se produce el salto a una nueva fila del carton
-                    System.out.println("");
-                }
-            }
-        }
-    }
+   public abstract  void imprimirCarton();
 
     public void copyToFileTxt() {
         // Fichero a crear. Ruta relativa a la carpeta raíz del proyecto
