@@ -9,7 +9,7 @@ import java.awt.Point;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Random;
+import java.util.Arrays;
 
 /**
  *
@@ -111,4 +111,10 @@ public abstract class Carton {
         }
     }
 
+    @Override
+    public String toString() {
+        return "Carton: " + Arrays.deepToString(carton);
+    }
+
+    
 }
