@@ -13,7 +13,7 @@ import java.time.LocalDate;
  *
  * @author Jesus
  */
-public class BingoAmericano extends Bingo{
+public final class BingoAmericano extends Bingo{
     private Carton cartonAmericano;
     public Bombo bomboAmericano;
 
@@ -35,7 +35,7 @@ public class BingoAmericano extends Bingo{
 
     @Override
     public String toString() {
-        return super.toString() + "BingoAmericano{" + "cartonAmericano=" + cartonAmericano + ", bomboAmericano=" + bomboAmericano + '}';
+        return super.toString() + "BingoAmericano" + "Carton" + cartonAmericano + " Bombo: " + bomboAmericano;
     }
 
       
