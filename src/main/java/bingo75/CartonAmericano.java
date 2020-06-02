@@ -106,7 +106,7 @@ public final class CartonAmericano extends Carton {
 
     @Override
     public String toString() {
-        return "CartonAmericano{" + "premio=" + premio + '}';
+        return super.toString() + "CartonAmericano{" + "premio=" + premio + '}';
     }
 
     @Override
