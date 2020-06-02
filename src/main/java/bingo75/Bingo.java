@@ -19,7 +19,7 @@ public abstract class Bingo {
     private static long contador = 0;
 
     public Bingo(LocalDate fecha, String idJugador) {
-        this.id = String.valueOf(contador++);
+        this.id = String.valueOf(contador++)+fecha.getDayOfMonth()+fecha.getMonthValue()+fecha.getYear();
         this.fecha = fecha;
         this.idJugador = idJugador;
     }
@@ -50,7 +50,7 @@ public abstract class Bingo {
 
     @Override
     public String toString() {
-        return "Bingo{" + "id=" + id + ", fecha=" + fecha + ", idJugador=" + idJugador + '}';
+        return "ID Partida: " + id + " Fecha:" + fecha + " ID Jugador: " + idJugador;
     }    
     
 }
