@@ -5,10 +5,13 @@
  */
 package bingo;
 
+import bingo75.BingoAmericano;
+import bingo75.BingoEuropeo;
 import bingo75.BomboAmericano;
 import bingo75.BomboEuropeo;
 import bingo75.CartonAmericano;
 import bingo75.CartonEuropeo;
+import java.time.LocalDate;
 import java.util.Scanner;
 
 /**
@@ -18,6 +21,8 @@ import java.util.Scanner;
 public class JuegoBingo {
 
     public static void main(String[] args) {
+        //jugarBingo75("Jesus");
+        jugarBingoEuropeo("Jesus");
     }
 
     private static void controlarTecla() {
@@ -32,12 +37,14 @@ public class JuegoBingo {
         } while (!tecla.equalsIgnoreCase(""));
     }
 
-    public static void jugarBingo75() {
+    public static void jugarBingo75(String idJugador) {
         BomboAmericano bombo75 = new BomboAmericano();
         CartonAmericano carton75 = new CartonAmericano();
+        BingoAmericano bingo75 = new BingoAmericano(carton75,bombo75, LocalDate.now(), idJugador);
         bombo75.rellenarBombo();
         carton75.generarCarton();
         carton75.imprimirCarton();
+        System.out.println("Datos de la partida\n"+bingo75);
         System.out.println("Bienvenido al Bingo Americano");
         do {
             controlarTecla();
@@ -50,12 +57,14 @@ public class JuegoBingo {
         System.out.println("BINGOOOOO!!");
     }
 
-    public static void jugarBingoEuropeo() {
+    public static void jugarBingoEuropeo(String idJugador) {
         BomboEuropeo bomboEU = new BomboEuropeo();
         CartonEuropeo cartonEU = new CartonEuropeo();
+        BingoEuropeo bingoEU = new BingoEuropeo(cartonEU, bomboEU, LocalDate.now(), idJugador);
         bomboEU.rellenarBombo();
         cartonEU.generarCarton();
         cartonEU.imprimirCarton();
+        System.out.println("Datos de la partida\n"+bingoEU);
         int contL1=0, contL2=0,contL3=0;
 
         System.out.println("Bienvenido al Bingo Euroepo");
