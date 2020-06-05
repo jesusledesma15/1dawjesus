@@ -16,11 +16,11 @@ import java.util.Arrays;
  *
  * @author Jesus
  */
-public class PartidasDAO {
+public class BingoDAO {
 
     private Connection con = null;
 
-    public PartidasDAO() {
+    public BingoDAO() {
         con = Conexion.getInstance();
     }
 
@@ -34,10 +34,10 @@ public class PartidasDAO {
 
             // Establecemos los parámetros de la sentencia
             prest.setString(1, partida.getId());
-            prest.setString(2, partida.getIdjugador());
-            prest.setDate(3, Date.valueOf(partida.getFecha()));
+            prest.setDate(2, Date.valueOf(partida.getFecha()));
+            prest.setString(3, partida.getIdjugador());
             prest.setInt(4, partida.getTipo());
-            prest.setString(5, partida.getBombo().toString());
+            prest.setString(5, partida.bomboToString());
             prest.setString(6, Arrays.deepToString(partida.getCarton()));
 
             numFilas = prest.executeUpdate() > 0;
