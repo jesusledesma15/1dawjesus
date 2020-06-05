@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package bingo75;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -12,7 +13,7 @@ import java.util.ArrayList;
  * @author Jesus
  */
 public class BingoVO {
-    
+
     private String id;
     private LocalDate fecha;
     private String idjugador;
@@ -31,8 +32,16 @@ public class BingoVO {
 
     public BingoVO() {
     }
-    
-    
+
+    public String bomboToString() {
+        String cadena = "";
+        for (Integer num : this.bombo) {
+            cadena += num + ",";
+        }
+        cadena = cadena + "\b";
+        return cadena;
+    }
+
     public String getId() {
         return id;
     }
@@ -84,6 +93,5 @@ public class BingoVO {
     @Override
     public String toString() {
         return "BingoVO{" + "id=" + id + ", fecha=" + fecha + ", idjugador=" + idjugador + ", tipo=" + tipo + ", bombo=" + bombo + ", carton=" + carton + '}';
-    }        
-    
+    }
 }
