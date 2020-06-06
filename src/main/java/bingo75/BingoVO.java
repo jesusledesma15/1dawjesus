@@ -7,6 +7,8 @@ package bingo75;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  *
@@ -38,9 +40,22 @@ public class BingoVO {
         for (Integer num : this.bombo) {
             cadena += num + ",";
         }
-        cadena = cadena + "\b";
         return cadena;
     }
+
+    public String cartonToString() {
+        String cadena = "";
+        for (int j = carton[0].length - 1; j >= 0; j--) {
+            for (int i = 0; i < carton.length; i++) {
+                cadena += carton[i][j] + ",";
+            }
+        }
+
+        return cadena;
+
+    }
+
+   
 
     public String getId() {
         return id;
@@ -92,6 +107,14 @@ public class BingoVO {
 
     @Override
     public String toString() {
-        return "BingoVO{" + "id=" + id + ", fecha=" + fecha + ", idjugador=" + idjugador + ", tipo=" + tipo + ", bombo=" + bombo + ", carton=" + carton + '}';
+        return "BingoVO{" + "id=" + id + ", fecha=" + fecha + ", idjugador=" + idjugador + ", tipo=" + tipo + ", bombo=" + bombo + ", carton=" + Arrays.deepToString(carton) + '}';
     }
+
+//    public static void main(String[] args) {
+//        ArrayList<Integer> bombo = BingoVO.stringBomboToArrayList("42,82,61,17,21,66,36,3,10,37,39,19,33,32,76,89,29,43,18,53,72,68,34,16,62,30,24,40,31,15,51,4,55,25,11,67,88,9,13,73,5,63,58,81,77,8,38,26,44,22,78,71,60,7,83,69,27,85,70,41,86,46,87,56,59,48,47,57,65,80,74,23,6,20,79,64,52,35,49,90,14,54,");
+//        bombo.forEach(System.out::println);
+//        int[][] prueba = BingoVO.stringCartonToArrayInt("5,14,21,0,41,0,62,0,0,0,15,22,35,0,55,64,0,0,0,0,0,36,48,56,0,78,-84", 2);
+//        System.out.println(Arrays.deepToString(prueba));
+//          
+//    }
 }
