@@ -64,7 +64,21 @@ public class BingoVO {
         return (ArrayList<Integer>) bomboList;
     }
 
-    
+    public static int[][] stringCartonToArrayInt(String carton, int tipo) {
+        List<String> bdList = new ArrayList<>(Arrays.asList(carton.split(",")));
+        int fila = tipo == 1 ? 5 : 9;
+        int columna = tipo == 1 ? 5 : 3;
+        int[][] cartonList = new int[columna][fila];
+        for (int j = cartonList[0].length - 1; j >= 0; j--) {
+            for (int[] cartonList1 : cartonList) {
+                if (!bdList.isEmpty()) {
+                    cartonList1[j] = Integer.valueOf(bdList.get(0));
+                    bdList.remove(0);
+                }
+            }
+        }
+        return cartonList;
+    }
 
     public String getId() {
         return id;
