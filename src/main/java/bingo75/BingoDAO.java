@@ -86,6 +86,18 @@ public class BingoDAO {
         return lista;
     }
 
+    public static String getId() throws SQLException {
+        BingoDAO bdDao = new BingoDAO();
+        int id;
+        List<BingoVO> lista = bdDao.getAll();
+        if (!lista.isEmpty()) {
+            id = Integer.parseInt(lista.get(lista.size()-1).getId())+1;
+            return String.valueOf(id);
+        }
+        
+        return "0";
+    }
+
     public static void main(String[] args) throws SQLException {
         BingoDAO bdDao = new BingoDAO();
         List<BingoVO> lista = bdDao.getAll();
