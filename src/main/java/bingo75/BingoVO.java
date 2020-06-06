@@ -55,7 +55,16 @@ public class BingoVO {
 
     }
 
-   
+    public static ArrayList<Integer> stringBomboToArrayList(String bombo) {
+        List<String> bdList = new ArrayList<>(Arrays.asList(bombo.split(",")));
+        List<Integer> bomboList = new ArrayList<>();
+        bdList.forEach((fav) -> {
+            bomboList.add(Integer.parseInt(fav.trim()));
+        });
+        return (ArrayList<Integer>) bomboList;
+    }
+
+    
 
     public String getId() {
         return id;
