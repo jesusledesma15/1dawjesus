@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -36,7 +37,7 @@ public class BingoDAO {
         try (PreparedStatement prest = con.prepareStatement(sql)) {
 
             // Establecemos los parámetros de la sentencia
-            prest.setString(1, partida.getId());
+            prest.setString(1, getId());
             prest.setDate(2, Date.valueOf(partida.getFecha()));
             prest.setString(3, partida.getIdjugador());
             prest.setInt(4, partida.getTipo());
@@ -71,13 +72,6 @@ public class BingoDAO {
                 b.setBombo(BingoVO.stringBomboToArrayList(res.getString("bombo")));
                 b.setCarton(BingoVO.stringCartonToArrayInt(res.getString("carton"), b.getTipo()));
 
-                System.out.println("id: " + b.getId());
-                System.out.println("fecha: " + b.getFecha());
-                System.out.println("idjugador: " + b.getIdjugador());
-                System.out.println("tipo: " + b.getTipo());
-                System.out.println("Bombo: " + b.getBombo());
-                System.out.println("Carton: " + Arrays.deepToString(b.getCarton()));
-
                 //Añadimos el objeto a la lista
                 lista.add(b);
             }
@@ -88,11 +82,13 @@ public class BingoDAO {
 
     public static String getId() throws SQLException {
         BingoDAO bdDao = new BingoDAO();
-        int id;
+        String dia = String.valueOf(LocalDate.now().getDayOfYear());
+        String mes = String.valueOf(LocalDate.now().getMonthValue());
+        String anyo = String.valueOf(LocalDate.now().getYear());
         List<BingoVO> lista = bdDao.getAll();
         if (!lista.isEmpty()) {
-            id = Integer.parseInt(lista.get(lista.size()-1).getId())+1;
-            return String.valueOf(id);
+            int idNew = Integer.parseInt(lista.get(lista.size()-1).getId())+1;
+            return String.valueOf(idNew);
         }
         
         return "0";
@@ -100,8 +96,12 @@ public class BingoDAO {
 
     public static void main(String[] args) throws SQLException {
         BingoDAO bdDao = new BingoDAO();
-        List<BingoVO> lista = bdDao.getAll();
-        lista.forEach(System.out::println);
+//        List<BingoVO> lista = bdDao.getAll();
+//        lista.forEach(System.out::println);
+        List<BingoVO> partidas = bdDao.getAll();
+        partidas.forEach(System.out::println);
+        System.out.println("---------------------------------------------");
+        System.out.println("-"+getId()+"-");
 
     }
 }
