@@ -5,6 +5,8 @@
  */
 package bingo75;
 
+import bingo.Bombo;
+import bingo.Carton;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -26,6 +28,47 @@ public class BingoDAO {
 
     public BingoDAO() {
         con = Conexion.getInstance();
+    }
+
+    public Bingo cargarPartida(String id) throws SQLException {
+        // Preparamos la consulta de datos mediante un objeto Statement
+        // ya que no necesitamos parametrizar la sentencia SQL
+        try (Statement st = con.createStatement()) {
+            // Ejecutamos la sentencia y obtenemos las filas en el objeto ResultSet
+            ResultSet res = st.executeQuery("select * from partidas where id='" + id + "'");
+            // Ahora construimos la lista, recorriendo el ResultSet y mapeando los datos
+            while (res.next()) {
+                BingoVO b = new BingoVO();
+                // Recogemos los datos de la partida, guardamos en un objeto
+                b.setId(res.getString("id"));
+                b.setFecha(res.getDate("fecha").toLocalDate());
+                b.setIdjugador(res.getString("idjugador"));
+                b.setTipo(res.getInt("tipo"));
+                b.setBombo(BingoVO.stringBomboToArrayList(res.getString("bombo")));
+                b.setCarton(BingoVO.stringCartonToArrayInt(res.getString("carton"), b.getTipo()));
+
+                switch (b.getTipo()) {
+                    case 1:
+                        CartonAmericano carton75 = new CartonAmericano();
+                        carton75.setCarton(b.getCarton());
+                        BomboAmericano bombo75 = new BomboAmericano();
+                        bombo75.setBombo(b.getBombo());
+
+                        BingoAmericano bingo75 = new BingoAmericano(carton75, bombo75, b.getFecha(), b.getIdjugador());
+                        return bingo75;
+                    default:
+                        Carton cartonEU = new CartonEuropeo();
+                        cartonEU.setCarton(b.getCarton());
+                        Bombo bomboEU = new BomboEuropeo();
+                        bomboEU.setBombo(b.getBombo());
+
+                        BingoEuropeo bingoEU = new BingoEuropeo(cartonEU, bomboEU, b.getFecha(), b.getIdjugador());
+                        return bingoEU;
+                }
+
+            }
+        }
+        return null;
     }
 
     public boolean insertPartida(BingoVO partida) {
@@ -87,10 +130,10 @@ public class BingoDAO {
         String anyo = String.valueOf(LocalDate.now().getYear());
         List<BingoVO> lista = bdDao.getAll();
         if (!lista.isEmpty()) {
-            int idNew = Integer.parseInt(lista.get(lista.size()-1).getId())+1;
+            int idNew = Integer.parseInt(lista.get(lista.size() - 1).getId()) + 1;
             return String.valueOf(idNew);
         }
-        
+
         return "0";
     }
 
@@ -101,7 +144,7 @@ public class BingoDAO {
         List<BingoVO> partidas = bdDao.getAll();
         partidas.forEach(System.out::println);
         System.out.println("---------------------------------------------");
-        System.out.println("-"+getId()+"-");
+        System.out.println("-" + getId() + "-");
 
     }
 }
