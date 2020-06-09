@@ -30,6 +30,31 @@ public class BingoDAO {
         con = Conexion.getInstance();
     }
 
+    public boolean comprobarId(String id) throws SQLException {
+
+        int ids = 0;
+        // Guardo la consulta SQL realizar en una cadena
+        //hacer consulta para contar, los emails
+        try (Statement st = con.createStatement()) {
+
+            // Preparamos Statement
+            // Ejecutamos la sentencia y obtenemos la tabla resultado
+            ResultSet res = st.executeQuery("select * from partidas where id='" + id + "'");
+            // Ahora construimos la lista
+            if (res.next()) {
+                ids = res.getInt("id");
+            }
+            // Cerramos el recurso PreparedStatement 
+            st.close();
+
+        } catch (SQLException e) {
+            System.out.println("Problemas durante la consulta en tabla partidas");
+            System.out.println(e);
+        }
+
+        return ids != 0;
+    }
+
     public Bingo cargarPartida(String id) throws SQLException {
         // Preparamos la consulta de datos mediante un objeto Statement
         // ya que no necesitamos parametrizar la sentencia SQL
