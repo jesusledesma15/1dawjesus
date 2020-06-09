@@ -35,7 +35,28 @@ public class BingoDAO {
 
     }
 
-    
+    public int updatePartida(String id, BingoVO nuevosDatos) throws SQLException {
+
+        int numFilas = 0;
+        String sql = "update partidas set fecha = ?, idjugador = ?, tipo = ?, bombo = ?, carton = ? where id=?";
+
+        // Instanciamos el objeto PreparedStatement para inserción
+        // de datos. Sentencia parametrizada
+        try (PreparedStatement prest = con.prepareStatement(sql)) {
+
+            // Establecemos los parámetros de la sentencia
+            prest.setDate(1, Date.valueOf(nuevosDatos.getFecha()));
+            prest.setString(2, nuevosDatos.getIdjugador());
+            prest.setInt(3, nuevosDatos.getTipo());
+            prest.setString(4, nuevosDatos.bomboToString());
+            prest.setString(5, nuevosDatos.cartonToString());
+            prest.setString(6, id);
+
+            numFilas = prest.executeUpdate();
+        }
+        return numFilas;
+
+    }
 
     public Bingo cargarPartida(String id) throws SQLException {
         // Preparamos la consulta de datos mediante un objeto Statement
