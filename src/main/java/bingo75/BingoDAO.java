@@ -15,7 +15,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -31,29 +30,12 @@ public class BingoDAO {
     }
 
     public boolean comprobarId(String id) throws SQLException {
+        List<BingoVO> lista = getAll();
+        return lista.stream().anyMatch(p -> p.getId().equals(id));
 
-        int ids = 0;
-        // Guardo la consulta SQL realizar en una cadena
-        //hacer consulta para contar, los emails
-        try (Statement st = con.createStatement()) {
-
-            // Preparamos Statement
-            // Ejecutamos la sentencia y obtenemos la tabla resultado
-            ResultSet res = st.executeQuery("select * from partidas where id='" + id + "'");
-            // Ahora construimos la lista
-            if (res.next()) {
-                ids = res.getInt("id");
-            }
-            // Cerramos el recurso PreparedStatement 
-            st.close();
-
-        } catch (SQLException e) {
-            System.out.println("Problemas durante la consulta en tabla partidas");
-            System.out.println(e);
-        }
-
-        return ids != 0;
     }
+
+    
 
     public Bingo cargarPartida(String id) throws SQLException {
         // Preparamos la consulta de datos mediante un objeto Statement
@@ -166,10 +148,12 @@ public class BingoDAO {
         BingoDAO bdDao = new BingoDAO();
 //        List<BingoVO> lista = bdDao.getAll();
 //        lista.forEach(System.out::println);
-        List<BingoVO> partidas = bdDao.getAll();
-        partidas.forEach(System.out::println);
-        System.out.println("---------------------------------------------");
-        System.out.println("-" + getId() + "-");
+//        List<BingoVO> partidas = bdDao.getAll();
+//        partidas.forEach(System.out::println);
+//        System.out.println("---------------------------------------------");
+//        System.out.println("-" + getId() + "-");
+        System.out.println(bdDao.comprobarId("0"));
 
     }
+
 }
