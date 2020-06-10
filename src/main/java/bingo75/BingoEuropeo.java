@@ -14,16 +14,17 @@ import java.time.LocalDate;
  * @author Jesus
  */
 public final class BingoEuropeo extends Bingo {
-    private Carton cartonEuropeo;
+    private CartonEuropeo cartonEuropeo;
     private Bombo bomboEuropeo;
 
-    public BingoEuropeo(Carton cartonEuropeo, Bombo bomboEuropeo, LocalDate fecha, String idJugador) {
+    public BingoEuropeo(CartonEuropeo cartonEuropeo, Bombo bomboEuropeo, LocalDate fecha, String idJugador) {
         super(fecha, idJugador);
         this.cartonEuropeo = cartonEuropeo;
         this.bomboEuropeo = bomboEuropeo;
     }
-
-    public Carton getCartonEuropeo() {
+    
+    
+    public CartonEuropeo getCartonEuropeo() {
         return cartonEuropeo;
     }
 
