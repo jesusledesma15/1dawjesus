@@ -41,7 +41,7 @@ public final class CartonEuropeo extends Carton {
         return (rdn.nextInt(hasta - desde + 1) + desde);
     }
 
-   private void generarEspacios() {
+    private void generarEspacios() {
         Random rdn = new Random();
         int espacio1, espacio2, espacio3, espacio4;
         int cont = 0; //Con este contado sabré los espacios que me quedan por poner en la tercera fila
@@ -65,7 +65,7 @@ public final class CartonEuropeo extends Carton {
                 }
                 //Con este if entramos en la tercera fila, para colocar los espacios seguros, que será cuando la misma posicion de las dos filas superiores ya tengan números
                 if (j == 0) {
-                    if (!(getCarton()[i][1]==0 || getCarton()[i][2]==0)) { //Con este if sabremos si en las posiciones superiores tienen dos números
+                    if (!(getCarton()[i][1] == 0 || getCarton()[i][2] == 0)) { //Con este if sabremos si en las posiciones superiores tienen dos números
                         //Si es así estamos obligado a colocar ahí un espacio
                         getCarton()[i][j] = 0;
                         //Actualizamos el contador para finalmente saber cuantos espacios más debemos colocar en la tercera fila
@@ -77,13 +77,13 @@ public final class CartonEuropeo extends Carton {
         }
         //Control de los espacios restantes de la tercera fila
         //Si contador no vale cuatro es porque necesitamos colocar aún espacios en la tercera fila
-        
+
         if (cont < 4) {
             //Dentro debemos acceder solo a la última fila que para mi es carton[0]
             for (int[] carton1 : getCarton()) {
                 //Podremos poner los espacios que faltan si, en alguna de las dos posiciones de arriba de la propia columna, al menos hay un espacio
                 //Y además en la propia posición de la fila tres no hay un espacio ya.
-                if (carton1[0]!=0 && (carton1[2]!=0 || carton1[1]!=0)) {
+                if (carton1[0] != 0 && (carton1[2] != 0 || carton1[1] != 0)) {
                     //Cumpliendo lo anterior podremos añadir un espacio y sumarselo al contador
                     carton1[0] = 0;
                     cont++;
@@ -197,14 +197,16 @@ public final class CartonEuropeo extends Carton {
         //Al tener la lógica montada para un cartón vertical, tenemos que imprimirlo en horizontal, por lo tanto invertimos i y j.
         //También tenemos que invertir j ya que el menor irá arriba y el menor irá abajo
         for (int j = getCarton()[0].length - 1; j >= 0; j--) {
+            System.out.println("-------------------------------------------------------------------------------------------------------------------------------------------------");
             for (int i = 0; i < getCarton().length; i++) {
-
-                System.out.print("|\t" + getCarton()[i][j] + "\t|");
+                String valor = getCarton()[i][j] == 0 ? "" : String.valueOf(getCarton()[i][j]);
+                System.out.print("|\t" + valor + "\t|");
                 if (i == 8) { //Cuando i vale 8 es cuando se produce el salto a una nueva fila del carton
                     System.out.println("");
                 }
             }
         }
+         System.out.println("-------------------------------------------------------------------------------------------------------------------------------------------------");
     }
 
 }
