@@ -85,7 +85,7 @@ public class BingoDAO {
                         BingoAmericano bingo75 = new BingoAmericano(carton75, bombo75, b.getFecha(), b.getIdjugador());
                         return bingo75;
                     default:
-                        Carton cartonEU = new CartonEuropeo();
+                        CartonEuropeo cartonEU = new CartonEuropeo();
                         cartonEU.setCarton(b.getCarton());
                         Bombo bomboEU = new BomboEuropeo();
                         bomboEU.setBombo(b.getBombo());
@@ -108,7 +108,7 @@ public class BingoDAO {
         try (PreparedStatement prest = con.prepareStatement(sql)) {
 
             // Establecemos los parámetros de la sentencia
-            prest.setString(1, getId());
+            prest.setString(1, partida.getId());
             prest.setDate(2, Date.valueOf(partida.getFecha()));
             prest.setString(3, partida.getIdjugador());
             prest.setInt(4, partida.getTipo());
@@ -149,20 +149,6 @@ public class BingoDAO {
         }
 
         return lista;
-    }
-
-    public static String getId() throws SQLException {
-        BingoDAO bdDao = new BingoDAO();
-        String dia = String.valueOf(LocalDate.now().getDayOfYear());
-        String mes = String.valueOf(LocalDate.now().getMonthValue());
-        String anyo = String.valueOf(LocalDate.now().getYear());
-        List<BingoVO> lista = bdDao.getAll();
-        if (!lista.isEmpty()) {
-            int idNew = Integer.parseInt(lista.get(lista.size() - 1).getId()) + 1;
-            return String.valueOf(idNew);
-        }
-
-        return "0";
     }
 
     public static void main(String[] args) throws SQLException {
