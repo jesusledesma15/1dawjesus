@@ -51,6 +51,11 @@ public abstract class Bombo {
         return bombo;
     }
 
+    public void setBombo(ArrayList<Integer> bombo) {
+        this.bombo = bombo;
+    }
+
+        
     @Override
     public String toString() {
         return "Bombo: " + bombo;
