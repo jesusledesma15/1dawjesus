@@ -87,17 +87,19 @@ public final class CartonAmericano extends Carton {
 
     @Override
     public void imprimirCarton() {
-        System.out.println("B\tI\tN\tG\tO");
+        System.out.println("---------------------------------------------------------------------------------");
+        System.out.println("|\tB\t||\tI\t||\tN\t||\tG\t||\tO\t|");
         for (int i = 0; i < getCarton().length; i++) {
+            System.out.println("---------------------------------------------------------------------------------");
             for (int j = 0; j < getCarton().length; j++) {
                 String valor = getCarton()[i][j] == 0 ? "" : String.valueOf(getCarton()[i][j]);
-                System.out.print(valor + "\t");
+                System.out.print("|\t" + valor + "\t|");
                 if (j == 4) {
                     System.out.println("");
                 }
             }
         }
-
+        System.out.println("---------------------------------------------------------------------------------");
     }
 
     public Patron getPremio() {
@@ -106,14 +108,14 @@ public final class CartonAmericano extends Carton {
 
     @Override
     public String toString() {
-        return super.toString()+ " Patron: " + premio;
+        return super.toString() + " Patron: " + premio;
     }
 
     @Override
     public boolean isBingo() {
         boolean isBingo = false;
         for (Point punto : this.premio.getCasillas()) {
-            isBingo = getCarton()[(int) punto.getX()][(int) punto.getY()] < 0;
+            isBingo = getCarton()[(int) punto.getX()][(int) punto.getY()] < 1;
             if (!isBingo) {
                 break;
             }
