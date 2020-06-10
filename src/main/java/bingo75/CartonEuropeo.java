@@ -12,7 +12,7 @@ import java.util.Random;
  *
  * @author Jesus
  */
-public class CartonEuropeo extends Carton {
+public final class CartonEuropeo extends Carton {
 
     public static final int COLUMNAS = 9;
     public static final int FILAS = 3;
@@ -96,37 +96,37 @@ public class CartonEuropeo extends Carton {
         }
     }
 
-    //Devuelve true si la primera linea contiene 5 X
+    //Devuelve true si la primera linea contiene 9 números menor que 1
     public boolean isFirstLine() {
         int cont = 0;
         for (int[] carton1 : getCarton()) {
-            if (carton1[2] == 0) {
+            if (carton1[2] < 1) {
                 cont++;
             }
         }
-        return cont == 5;
+        return cont == COLUMNAS;
     }
 
-    //Devuelve true si la segunda linea contiene 5 X
+    //Devuelve true si la segunda linea contiene 9 números menor que 1
     public boolean isSecondLine() {
         int cont = 0;
         for (int[] carton1 : getCarton()) {
-            if (carton1[1] == 0) {
+            if (carton1[1] < 1) {
                 cont++;
             }
         }
-        return cont == 5;
+        return cont == COLUMNAS;
     }
 
-    //Devuelve true si la tercera linea contiene 5 X
+    //Devuelve true si la tercera linea contiene 9 números menor que 1
     public boolean isThirdLine() {
         int cont = 0;
         for (int[] carton1 : getCarton()) {
-            if (carton1[0] == 0) {
+            if (carton1[0] < 1) {
                 cont++;
             }
         }
-        return cont == 5;
+        return cont == COLUMNAS;
     }
     //Devuelve true si todas las lineas se han tachado
 
