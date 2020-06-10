@@ -66,8 +66,8 @@ public class BingoVO {
 
     public static int[][] stringCartonToArrayInt(String carton, int tipo) {
         List<String> bdList = new ArrayList<>(Arrays.asList(carton.split(",")));
-        int fila = tipo == 1 ? 5 : 9;
-        int columna = tipo == 1 ? 5 : 3;
+        int fila = tipo == 1 ? 5 : 3;
+        int columna = tipo == 1 ? 5 : 9;
         int[][] cartonList = new int[columna][fila];
         for (int j = cartonList[0].length - 1; j >= 0; j--) {
             for (int[] cartonList1 : cartonList) {
